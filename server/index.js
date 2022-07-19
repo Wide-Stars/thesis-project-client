@@ -47,9 +47,33 @@ app.post("/", (req, res) => {
 
 
 })
+const verifyToken = (req, res, next) => {
+	const authHeader = req.headers.authorization;
+
+	// checking for token in Header
+	if (authHeader) {
+		const token = authHeader.split(" ")[1];
+		// verify token
+		jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+			if (err) { res.status(401).json({ message: "Invalid token" }) }
+
+			req.user = decoded;
+			next();
+		})
+	} else {
+		res.status(401).json({ message: "Unauthorized" })
+	}
+}
 
 
-
+app.delete("/api/user/:id", verifyToken, (req, res) => {
+	console.log(req.user.id, req.params.id);
+	if (req.user.id == req.params.id) {
+		res.status(200).json({ message: "User deleted" })
+	} else {
+		res.status(403).json({ message: "Unauthorized" })
+	}
+})
 
 
 
