@@ -2,14 +2,14 @@ import express, { response } from "express"
 import bodyParser from "body-parser"
 import mongoose from "mongoose"
 import cors from "cors"
-import jwt from "jsonwebtoken"
 import dotenv from 'dotenv'
 dotenv.config()
 
 import userRoutes from "./routes/user.js"
-import postRoutes from "./routes/post.js"
+// import postRoutes from "./routes/post.js"
 
 const app = express();
+app.use(cors())
 
 
 // Connect to MongoDB

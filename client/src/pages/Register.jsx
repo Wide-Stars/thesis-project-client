@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -7,9 +8,15 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSupervisor, setIsSupervisor] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, email, password, confirmPassword, isSupervisor);
+    const res = await axios.post('http://localhost:3000/api/user/create', {
+      name: name,
+      password: password,
+      isSupervisor: isSupervisor,
+      email: email,
+    });
+    console.log(res);
   };
 
   const handleCheckbox = () => {
@@ -20,7 +27,7 @@ const Register = () => {
     <div className="container">
       <div className="register">
         <form onSubmit={handleSubmit}>
-          <span className="formTitle">Lama Login</span>
+          <span className="formTitle">Login form</span>
           <input
             type="text"
             placeholder="name"

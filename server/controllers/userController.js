@@ -1,23 +1,6 @@
 import jwt from "jsonwebtoken"
 import { userModel } from "../db/user.js";
 
-const users = [
-	{
-		id: 1,
-		name: "jon doe",
-		password: "jon1122",
-		isSupervisor: true,
-	},
-	{
-
-
-		id: 2,
-		name: "Maruf Rien",
-		password: "asdf",
-		isSupervisor: false,
-	}
-]
-
 //helper function
 export const verifyToken = (req, res, next) => {
 	const authHeader = req.headers.authorization;
