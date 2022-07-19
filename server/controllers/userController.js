@@ -58,16 +58,19 @@ export const removeUser = (req, res) => {
 	}
 }
 
-export const loginUser = (req, res) => {
-	const { name, password } = req.body;
+export const loginUser = async (req, res) => {
+	const { email, password } = req.body;
 
-	const user = users.find(u => u.name === name && u.password === password);
+	const user = await userModel.findOne({ email: email, password: password })
+
 	if (user) {
+		const _id = user._id.toString()
+		const isSupervisor = user.isSupervisor
 		//generate token
-		const token = jwt.sign({ id: user.id, isSupervisor: user.isSupervisor }, process.env.JWT_SECRET, { expiresIn: '1m' });
+		const token = jwt.sign({ _id: _id, isSupervisor: isSupervisor }, process.env.JWT_SECRET);
 
 		// send response
-		res.json({ ...user, token })
+		res.json({ user, token })
 	} else {
 		res.status(400).json({ message: "Invalid username or password" })
 	}

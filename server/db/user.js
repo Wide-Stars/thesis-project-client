@@ -14,6 +14,11 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	isSupervisor: {
+		type: Boolean,
+		required: true,
+
+	}
 })
 
 export const userModel = mongoose.model("User", userSchema)
