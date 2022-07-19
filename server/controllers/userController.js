@@ -43,6 +43,7 @@ export const removeUser = (req, res) => {
 
 export const loginUser = async (req, res) => {
 	const { email, password } = req.body;
+	console.log(email, password);
 
 	const user = await userModel.findOne({ email: email, password: password })
 

@@ -6,7 +6,7 @@ import { createUser, modifyUser, removeUser, loginUser, verifyToken } from "../c
 router.post("/create", createUser)
 router.put("/modify", modifyUser)
 router.delete("/remove/:id", verifyToken, removeUser)
-router.get("/login", loginUser)
+router.post("/login", loginUser)
 
 
 
