@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+import { userModel } from "../db/user.js";
 
 const users = [
 	{
@@ -37,7 +38,16 @@ export const verifyToken = (req, res, next) => {
 }
 
 
-export const createUser = (req, res) => res.send("User created")
+export const createUser = async (req, res) => {
+	// get user from req.body
+	const { name, password, isSupervisor, email } = req.body;
+
+	const newUser = new userModel({ name: name, password: password, isSupervisor: isSupervisor, email: email });
+
+	await newUser.save()
+	res.json({ message: "User created successfully", user: req.body })
+
+}
 export const modifyUser = (req, res) => res.send("User modified")
 
 export const removeUser = (req, res) => {
