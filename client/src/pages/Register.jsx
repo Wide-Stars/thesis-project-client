@@ -16,7 +16,7 @@ const Register = () => {
       isSupervisor: isSupervisor,
       email: email,
     });
-    console.log(res);
+    console.log(name, email, password, confirmPassword, isSupervisor);
   };
 
   const handleCheckbox = () => {
@@ -28,7 +28,10 @@ const Register = () => {
       <div class="row">
         <div class="col-md-6 offset-md-3">
           <div class="signup-form">
-            <form action="" class="mt-5 border p-4 bg-light shadow">
+            <form
+              onSubmit={handleSubmit}
+              class="mt-5 border p-4 bg-light shadow"
+            >
               <h4 class="mb-5 text-secondary">Create Your Account</h4>
               <div class="row">
                 <div class="mb-3 col-md-12">
@@ -40,6 +43,7 @@ const Register = () => {
                     name="name"
                     class="form-control"
                     placeholder="Enter Name"
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
 
@@ -52,6 +56,7 @@ const Register = () => {
                     name="email"
                     class="form-control"
                     placeholder="Enter Email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -64,6 +69,7 @@ const Register = () => {
                     name="password"
                     class="form-control"
                     placeholder="Enter Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div class="mb-3 col-md-12">
@@ -72,20 +78,22 @@ const Register = () => {
                   </label>
                   <input
                     type="password"
-                    name="confirmpassword"
+                    name="confirm-password"
                     class="form-control"
                     placeholder="Confirm Password"
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </div>
                 <div class="form-check ">
                   <input
                     class="form-check-input ml-2"
                     type="checkbox"
-                    value=""
-                    id="flexCheckDefault"
+                    id="isSupervisor"
+                    onChange={handleCheckbox}
+                    checked={isSupervisor}
                   />
                   <label class="form-check-label" for="flexCheckDefault">
-                    Default checkbox
+                    Supervisor Account
                   </label>
                 </div>
                 <div class="col-md-12">
