@@ -25,10 +25,19 @@ export const createUser = async (req, res) => {
 	// get user from req.body
 	const { name, password, isSupervisor, email } = req.body;
 
+
 	const newUser = new userModel({ name: name, password: password, isSupervisor: isSupervisor, email: email });
 
-	await newUser.save()
-	res.json({ message: "User created successfully", user: req.body })
+	const { supervisor, _id } = await newUser.save()
+
+
+	// generating token
+	const newPayload = jwt.sign({ _id: _id.toString(), isSupervisor: supervisor }, process.env.JWT_SECRET)
+
+
+
+
+	res.json({ message: "User created successfully", payload: newPayload })
 
 }
 export const modifyUser = (req, res) => res.send("User modified")
