@@ -8,11 +8,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await axios.post('http://localhost:3000/api/user/login', {
-      email: email,
-      password: password,
-    });
-    console.log(res);
+    // const res = await axios.post('http://localhost:3000/api/user/login', {
+    //   email: email,
+    //   password: password,
+    // });
+    console.log(email, password);
   };
   return (
     <div class="container">
@@ -32,6 +32,7 @@ const Login = () => {
                     name="email"
                     class="form-control"
                     placeholder="Enter Email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 <div class="mb-3 col-md-12">
@@ -41,10 +42,13 @@ const Login = () => {
                     name="password"
                     class="form-control"
                     placeholder="Enter Password"
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <div class="col-md-12">
-                  <button class="btn btn-primary float-end">Login</button>
+                  <button class="btn btn-primary float-end" type="submit">
+                    Login
+                  </button>
                 </div>
               </div>
             </form>
