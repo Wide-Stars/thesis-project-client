@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeToken } from '../redux/userSlice';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -7,6 +9,8 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSupervisor, setIsSupervisor] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +20,11 @@ const Register = () => {
       isSupervisor: isSupervisor,
       email: email,
     });
-    console.log(name, email, password, confirmPassword, isSupervisor);
+
+    const token = res.data.payload;
+    dispatch(changeToken(token));
+
+    console.log(token, res);
   };
 
   const handleCheckbox = () => {
