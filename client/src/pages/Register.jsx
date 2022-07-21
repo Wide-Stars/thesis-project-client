@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeToken } from '../redux/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -9,8 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isSupervisor, setIsSupervisor] = useState(false);
-
-  const dispatch = useDispatch();
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,9 +21,10 @@ const Register = () => {
     });
 
     const token = res.data.payload;
-    dispatch(changeToken(token));
+    navigate('/');
 
-    console.log(token, res);
+    // save token to local storage
+    localStorage.setItem('token', token);
   };
 
   const handleCheckbox = () => {

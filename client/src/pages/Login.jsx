@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/login.css';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const res = await axios.post('http://localhost:3000/api/user/login', {
-    //   email: email,
-    //   password: password,
-    // });
-    console.log(email, password);
+    const res = await axios.post('http://localhost:3000/api/user/login', {
+      email: email,
+      password: password,
+    });
+    if (res.data.token) {
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
+    }
   };
   return (
     <div class="container">
