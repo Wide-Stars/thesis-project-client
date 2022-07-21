@@ -6,6 +6,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   let navigate = useNavigate();
+  const [wrn, setWrn] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,6 +18,8 @@ const Login = () => {
     if (res.data.token) {
       localStorage.setItem('token', res.data.token);
       navigate('/');
+    } else {
+      setWrn(true);
     }
   };
   return (
@@ -54,11 +57,15 @@ const Login = () => {
                   <button class="btn btn-primary float-end" type="submit">
                     Login
                   </button>
+                  <div>{wrn ? 'email or password is incorrect' : ''}</div>
                 </div>
               </div>
             </form>
             <p class="text-center mt-3 text-secondary">
-              Don't have a account? <a href="#">Register</a>
+              Don't have a account?{' '}
+              <a onClick={navigate('/register')} href="#">
+                Register
+              </a>
             </p>
           </div>
         </div>

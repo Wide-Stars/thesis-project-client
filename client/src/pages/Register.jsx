@@ -110,7 +110,10 @@ const Register = () => {
               </div>
             </form>
             <p class="text-center mt-3 text-secondary">
-              If you have account, Please <a href="#">Login Now</a>
+              If you have account, Please{' '}
+              <a onClick={navigate('/login')} href="#">
+                Login Now
+              </a>
             </p>
           </div>
         </div>
