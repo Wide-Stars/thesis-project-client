@@ -1,21 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import schema from '../components/Form';
 
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).max(32).required(),
-  name: yup.string().required(),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password')], 'Passwords must match')
-    .required(),
-  isSupervisor: yup.boolean(),
-});
+import '../styles/extra.css';
 
 const Register = () => {
   const {
@@ -26,13 +15,6 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isSupervisor, setIsSupervisor] = useState(false);
-  let navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log({ data });
@@ -74,9 +56,8 @@ const Register = () => {
                     class="form-control"
                     placeholder="Enter Name"
                     {...register('name')}
-                    onChange={(e) => setName(e.target.value)}
                   />
-                  <p>{errors.name?.message}</p>
+                  <p className="wrn">{errors.name?.message}</p>
                 </div>
 
                 <div class="mb-3 col-md-12">
@@ -89,9 +70,8 @@ const Register = () => {
                     class="form-control"
                     placeholder="Enter Email"
                     {...register('email')}
-                    onChange={(e) => setEmail(e.target.value)}
                   />
-                  <p>{errors.email?.message}</p>
+                  <p className="wrn">{errors.email?.message}</p>
                 </div>
 
                 <div class="mb-3 col-md-12">
@@ -104,9 +84,8 @@ const Register = () => {
                     class="form-control"
                     placeholder="Enter Password"
                     {...register('password')}
-                    onChange={(e) => setPassword(e.target.value)}
                   />
-                  <p>{errors.password?.message}</p>
+                  <p className="wrn">{errors.password?.message}</p>
                 </div>
                 <div class="mb-3 col-md-12">
                   <label>
@@ -118,17 +97,14 @@ const Register = () => {
                     class="form-control"
                     placeholder="Confirm Password"
                     {...register('confirmPassword')}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
-                  <p>{errors.confirmPassword?.message}</p>
+                  <p className="wrn">{errors.confirmPassword?.message}</p>
                 </div>
                 <div class="form-check ">
                   <input
                     class="form-check-input ml-2"
                     type="checkbox"
                     id="isSupervisor"
-                    // onChange={handleCheckbox}
-                    // checked={isSupervisor}
                     {...register('isSupervisor')}
                   />
                   <label class="form-check-label" for="flexCheckDefault">
