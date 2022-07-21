@@ -21,10 +21,13 @@ const Login = () => {
   const onSubmit = async (data) => {
     console.log({ data });
 
-    const res = await axios.post('http://localhost:3000/api/user/login', {
-      email: data.email,
-      password: data.password,
-    });
+    const res = await axios.post(
+      'https://thesis-hub.herokuapp.com/api/user/login',
+      {
+        email: data.email,
+        password: data.password,
+      }
+    );
     if (res.data.token) {
       localStorage.setItem('token', res.data.token);
       navigate('/');

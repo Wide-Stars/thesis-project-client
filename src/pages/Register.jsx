@@ -20,12 +20,15 @@ const Register = () => {
   const onSubmit = async (data) => {
     console.log({ data });
 
-    const res = await axios.post('http://localhost:3000/api/user/create', {
-      name: data.name,
-      password: data.password,
-      isSupervisor: data.isSupervisor,
-      email: data.email,
-    });
+    const res = await axios.post(
+      'https://thesis-hub.herokuapp.com/api/user/create',
+      {
+        name: data.name,
+        password: data.password,
+        isSupervisor: data.isSupervisor,
+        email: data.email,
+      }
+    );
     const token = res.data.payload;
     console.log(token);
     // save token to local storage
