@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -110,10 +110,7 @@ const Register = () => {
               </div>
             </form>
             <p class="text-center mt-3 text-secondary">
-              If you have account, Please{' '}
-              <a onClick={navigate('/login')} href="#">
-                Login Now
-              </a>
+              If you have account, Please <Link to="/login">Login Now</Link>
             </p>
           </div>
         </div>

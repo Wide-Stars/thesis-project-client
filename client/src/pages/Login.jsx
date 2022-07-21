@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/login.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -62,10 +62,8 @@ const Login = () => {
               </div>
             </form>
             <p class="text-center mt-3 text-secondary">
-              Don't have a account?{' '}
-              <a onClick={navigate('/register')} href="#">
-                Register
-              </a>
+              Don't have a account?
+              <Link to="/register">Register</Link>
             </p>
           </div>
         </div>
