@@ -1,33 +1,34 @@
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../components/Form';
+import { schemaLogin } from '../components/Form';
 
 import '../styles/extra.css';
+
 const Login = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaLogin),
   });
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
+    console.log({ data });
 
-    // const res = await axios.post('http://localhost:3000/api/user/login', {
-    //   email: email,
-    //   password: password,
-    // });
-    // if (res.data.token) {
-    //   localStorage.setItem('token', res.data.token);
-    //   navigate('/');
-    // } else {
-    //   setWrn(true);
-    // }
+    const res = await axios.post('http://localhost:3000/api/user/login', {
+      email: data.email,
+      password: data.password,
+    });
+    if (res.data.token) {
+      localStorage.setItem('token', res.data.token);
+      navigate('/');
+    }
   };
   return (
     <div className="container">
@@ -35,8 +36,8 @@ const Login = () => {
         <div className="col-md-6 offset-md-3">
           <div className="signup-form">
             <form
-              onSubmit={handleSubmit(onSubmit)}
               className="mt-5 border p-4 bg-light shadow"
+              onSubmit={handleSubmit(onSubmit)}
             >
               <h4 className="mb-5 text-secondary">Login To Your Account</h4>
               <div className="row">
@@ -54,18 +55,16 @@ const Login = () => {
                 <div className="mb-3 col-md-12">
                   <label>Password</label>
                   <input
-                    {...register('password')}
                     type="password"
                     name="password"
                     className="form-control"
                     placeholder="Enter Password"
+                    {...register('password')}
                   />
                   <p className="wrn">{errors.password?.message}</p>
                 </div>
                 <div className="col-md-12">
-                  <button className="btn btn-primary float-end" type="submit">
-                    Login
-                  </button>
+                  <button className="btn btn-primary float-end">Login</button>
                 </div>
               </div>
             </form>

@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
+export const schema = yup.object().shape({
   email: yup.string().email().required('Email is required'),
   password: yup.string().min(8).max(32).required('Password is required'),
   name: yup.string().required('Name is required'),
@@ -10,4 +10,7 @@ const schema = yup.object().shape({
     .required('Confirm Password is required'),
   isSupervisor: yup.boolean(),
 });
-export default schema;
+export const schemaLogin = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).max(32).required(),
+});
