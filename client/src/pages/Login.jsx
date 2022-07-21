@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/login.css';
-import { useNavigate } from 'react-router-dom';
-const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  let navigate = useNavigate();
+import { Link, useNavigate } from 'react-router-dom';
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaLogin } from '../components/Form';
+
+import '../styles/extra.css';
+
+const Login = () => {
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schemaLogin),
+  });
+
+  const onSubmit = async (data) => {
+    console.log({ data });
 
     const res = await axios.post('http://localhost:3000/api/user/login', {
-      email: email,
-      password: password,
+      email: data.email,
+      password: data.password,
     });
     if (res.data.token) {
       localStorage.setItem('token', res.data.token);
@@ -20,45 +31,46 @@ const Login = () => {
     }
   };
   return (
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <div class="signup-form">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-6 offset-md-3">
+          <div className="signup-form">
             <form
-              onSubmit={handleSubmit}
-              class="mt-5 border p-4 bg-light shadow"
+              className="mt-5 border p-4 bg-light shadow"
+              onSubmit={handleSubmit(onSubmit)}
             >
-              <h4 class="mb-5 text-secondary">Login To Your Account</h4>
-              <div class="row">
-                <div class="mb-3 col-md-12">
+              <h4 className="mb-5 text-secondary">Login To Your Account</h4>
+              <div className="row">
+                <div className="mb-3 col-md-12">
                   <label>Email</label>
                   <input
                     type="email"
                     name="email"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter Email"
-                    onChange={(e) => setEmail(e.target.value)}
+                    {...register('email')}
                   />
                 </div>
-                <div class="mb-3 col-md-12">
+                <p className="wrn">{errors.email?.message}</p>
+                <div className="mb-3 col-md-12">
                   <label>Password</label>
                   <input
                     type="password"
                     name="password"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter Password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    {...register('password')}
                   />
+                  <p className="wrn">{errors.password?.message}</p>
                 </div>
-                <div class="col-md-12">
-                  <button class="btn btn-primary float-end" type="submit">
-                    Login
-                  </button>
+                <div className="col-md-12">
+                  <button className="btn btn-primary float-end">Login</button>
                 </div>
               </div>
             </form>
-            <p class="text-center mt-3 text-secondary">
-              Don't have a account? <a href="#">Register</a>
+            <p className="text-center mt-3 text-secondary">
+              Don't have a account?
+              <Link to="/register">Register Now</Link>
             </p>
           </div>
         </div>

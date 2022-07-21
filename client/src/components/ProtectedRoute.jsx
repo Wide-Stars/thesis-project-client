@@ -4,14 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const ProtectedRoute = () => {
-  let auth = true;
-  const token = useSelector((state) => state.user);
-  // if(!token) {
-  //   auth = false
-  // } else{
-
-  // }
-  console.log(token);
+  const auth = localStorage.getItem('token');
 
   return auth ? <Outlet /> : <Navigate to="/login" />;
 };
