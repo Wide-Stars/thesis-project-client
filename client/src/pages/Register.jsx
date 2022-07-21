@@ -2,8 +2,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).max(32).required(),
+  name: yup.string().required(),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password')], 'Passwords must match')
+    .required(),
+  isSupervisor: yup.boolean(),
+});
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,20 +34,19 @@ const Register = () => {
   const [isSupervisor, setIsSupervisor] = useState(false);
   let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await axios.post('http://localhost:3000/api/user/create', {
-      name: name,
-      password: password,
-      isSupervisor: isSupervisor,
-      email: email,
-    });
-
-    const token = res.data.payload;
-    navigate('/');
-
-    // save token to local storage
-    localStorage.setItem('token', token);
+  const onSubmit = (data) => {
+    console.log({ data });
+    // e.preventDefault();
+    // const res = await axios.post('http://localhost:3000/api/user/create', {
+    //   name: name,
+    //   password: password,
+    //   isSupervisor: isSupervisor,
+    //   email: email,
+    // });
+    // const token = res.data.payload;
+    // navigate('/');
+    // // save token to local storage
+    // localStorage.setItem('token', token);
   };
 
   const handleCheckbox = () => {
@@ -37,7 +59,7 @@ const Register = () => {
         <div class="col-md-6 offset-md-3">
           <div class="signup-form">
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               class="mt-5 border p-4 bg-light shadow"
             >
               <h4 class="mb-5 text-secondary">Create Your Account</h4>
@@ -51,8 +73,10 @@ const Register = () => {
                     name="name"
                     class="form-control"
                     placeholder="Enter Name"
+                    {...register('name')}
                     onChange={(e) => setName(e.target.value)}
                   />
+                  <p>{errors.name?.message}</p>
                 </div>
 
                 <div class="mb-3 col-md-12">
@@ -64,8 +88,10 @@ const Register = () => {
                     name="email"
                     class="form-control"
                     placeholder="Enter Email"
+                    {...register('email')}
                     onChange={(e) => setEmail(e.target.value)}
                   />
+                  <p>{errors.email?.message}</p>
                 </div>
 
                 <div class="mb-3 col-md-12">
@@ -77,8 +103,10 @@ const Register = () => {
                     name="password"
                     class="form-control"
                     placeholder="Enter Password"
+                    {...register('password')}
                     onChange={(e) => setPassword(e.target.value)}
                   />
+                  <p>{errors.password?.message}</p>
                 </div>
                 <div class="mb-3 col-md-12">
                   <label>
@@ -89,16 +117,19 @@ const Register = () => {
                     name="confirm-password"
                     class="form-control"
                     placeholder="Confirm Password"
+                    {...register('confirmPassword')}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                   />
+                  <p>{errors.confirmPassword?.message}</p>
                 </div>
                 <div class="form-check ">
                   <input
                     class="form-check-input ml-2"
                     type="checkbox"
                     id="isSupervisor"
-                    onChange={handleCheckbox}
-                    checked={isSupervisor}
+                    // onChange={handleCheckbox}
+                    // checked={isSupervisor}
+                    {...register('isSupervisor')}
                   />
                   <label class="form-check-label" for="flexCheckDefault">
                     Supervisor Account
