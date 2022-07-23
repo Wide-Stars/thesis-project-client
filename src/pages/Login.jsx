@@ -22,7 +22,7 @@ const Login = () => {
     console.log({ data });
 
     const res = await axios.post(
-      'https://thesis-project-io.herokuapp.com/api/user/login',
+      'https://thesis-app-io.herokuapp.com/api/user/login',
       {
         email: data.email,
         password: data.password,
