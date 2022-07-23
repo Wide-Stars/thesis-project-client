@@ -1,21 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const navBar = () => {
   const navigate = useNavigate();
+
+  // current location/url of the page
+  const { pathname } = useLocation();
+
+  //logout button handler
   const logoutBtn = () => {
     localStorage.removeItem('token');
     navigate('/login');
   };
+
+  console.log();
+
   return (
-    <nav class="navbar navbar-expand-lg bg-light navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Thesis site
+    <nav className="navbar navbar-expand-lg bg-light navbar-dark bg-dark">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="#">
+          Thesis Project
         </a>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
@@ -23,53 +31,30 @@ const navBar = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 ">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 ">
+            <li className="nav-item">
+              <a className="nav-link active" aria-current="page" href="#">
                 Home
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Link
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Login
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
+            <li className="nav-item">
+              <a className="nav-link" href="#">
+                Register
               </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
-              </ul>
             </li>
           </ul>
-          <button onClick={logoutBtn}>Log out</button>
+          // dynamic logout button
+          {pathname == '/login' || pathname == '/register' ? null : (
+            <button onClick={logoutBtn}>Log out</button>
+          )}
         </div>
       </div>
     </nav>
