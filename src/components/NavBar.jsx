@@ -17,8 +17,8 @@ const navBar = () => {
   console.log();
 
   return (
-    <nav className="navbar navbar-expand-lg bg-light navbar-dark bg-dark">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-lg navbar-dark primary-bg">
+      <div className="container">
         <a className="navbar-brand" href="#">
           Thesis Project
         </a>
@@ -40,18 +40,8 @@ const navBar = () => {
                 Home
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Login
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Register
-              </a>
-            </li>
           </ul>
-          // dynamic logout button
+
           {pathname == '/login' || pathname == '/register' ? null : (
             <button onClick={logoutBtn}>Log out</button>
           )}
