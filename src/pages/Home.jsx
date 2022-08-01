@@ -22,7 +22,9 @@ const Home = () => {
             <li>dummy data</li> <li>dummy data</li> <li>dummy data</li>
           </ul>
         </div>
-        <div>{/* <Post /> */}</div>
+        <div>
+          <Post />
+        </div>
       </div>
     </>
   );

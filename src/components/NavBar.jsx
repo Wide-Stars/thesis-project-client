@@ -53,7 +53,9 @@ const navBar = () => {
           </ul>
           // dynamic logout button
           {pathname == '/login' || pathname == '/register' ? null : (
-            <button onClick={logoutBtn}>Log out</button>
+            <button className="btn btn-secondary" onClick={logoutBtn}>
+              Log out
+            </button>
           )}
         </div>
       </div>
