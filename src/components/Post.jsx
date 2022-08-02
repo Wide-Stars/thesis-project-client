@@ -16,7 +16,7 @@ const Post = () => {
             <div class="col-sm-6">
               <h4>
                 <a hre="#" class="username">
-                  Deyson Bejarano
+                  Maruf Rien
                 </a>
               </h4>
               <h5>
