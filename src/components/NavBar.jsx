@@ -10,6 +10,7 @@ const navBar = () => {
 
   //logout button handler
   const logoutBtn = () => {
+    localStorage.setItem('logedin', '0');
     localStorage.removeItem('token');
     navigate('/login');
   };
@@ -43,7 +44,9 @@ const navBar = () => {
           </ul>
 
           {pathname == '/login' || pathname == '/register' ? null : (
-            <button onClick={logoutBtn}>Log out</button>
+            <button className="btn btn-secondary" onClick={logoutBtn}>
+              Log out
+            </button>
           )}
         </div>
       </div>

@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../components/Form';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/extra.css';
 import loginImg from '../assets/images/login.png'
@@ -20,7 +22,7 @@ const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    const id = toast.loading('Please wait...');
 
     const res = await axios.post(
       'https://thesis-app-io.herokuapp.com/api/user/create',
@@ -31,8 +33,15 @@ const Register = () => {
         email: data.email,
       }
     );
+    // update post and logedin value
+    toast.update(id, {
+      render: 'All is good',
+      type: 'success',
+      isLoading: false,
+    });
+    localStorage.setItem('logedin', '0');
+
     const token = res.data.payload;
-    console.log(token);
     // save token to local storage
     localStorage.setItem('token', token);
 
@@ -74,7 +83,6 @@ const Register = () => {
                 />
                 <p className="wrn">{errors.email?.message}</p>
               </div>
-
               <div className="mb-3 col-md-12">
                 <label className='mb-3 text-light'>
                   Password<span className="text-danger">*</span>
