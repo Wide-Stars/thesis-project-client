@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schema } from '../components/Form';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/extra.css';
 
@@ -18,7 +20,7 @@ const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    const id = toast.loading('Please wait...');
 
     const res = await axios.post(
       'https://thesis-app-io.herokuapp.com/api/user/create',
@@ -29,8 +31,15 @@ const Register = () => {
         email: data.email,
       }
     );
+    // update post and logedin value
+    toast.update(id, {
+      render: 'All is good',
+      type: 'success',
+      isLoading: false,
+    });
+    localStorage.setItem('logedin', '0');
+
     const token = res.data.payload;
-    console.log(token);
     // save token to local storage
     localStorage.setItem('token', token);
 
@@ -39,6 +48,7 @@ const Register = () => {
 
   return (
     <div className="container">
+      <ToastContainer />
       <div className="row">
         <div className="col-md-6 offset-md-3">
           <div className="signup-form">
