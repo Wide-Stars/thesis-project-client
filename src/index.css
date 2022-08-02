@@ -68,3 +68,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+
+/*Global color */
+
+
+
+
+.primary-bg {
+  background-color: #0b1222;
+}
+.secondary-bg {
+  background-color: #0d1425;
+}
+.thertiary-bg {
+  background-color: #1e293b;
+}
+
+
+
+.primary-highlighter {
+  color: #38bdf8;
+}
+
+/*Global input style */
+
