@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaLogin } from '../components/Form';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/extra.css';
 
@@ -19,7 +21,7 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log({ data });
+    const id = toast.loading('Please wait...');
 
     const res = await axios.post(
       'https://thesis-app-io.herokuapp.com/api/user/login',
@@ -29,7 +31,13 @@ const Login = () => {
       }
     );
     if (res.data.token) {
+      toast.update(id, {
+        render: 'All is good',
+        type: 'success',
+        isLoading: false,
+      });
       localStorage.setItem('token', res.data.token);
+
       navigate('/');
     }
   };
@@ -69,6 +77,7 @@ const Login = () => {
                 <div className="col-md-12">
                   <button className="btn btn-primary float-end">Login</button>
                 </div>
+                <ToastContainer />
               </div>
             </form>
             <p className="text-center mt-3 text-secondary">

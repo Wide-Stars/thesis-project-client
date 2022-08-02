@@ -15,12 +15,34 @@ const Home = () => {
       <HomeNavbar />
       <div className="d-flex justify-content-between">
         <div>
-          <ul>
-            <li>dummy data</li>
-            <li>dummy data</li> <li>dummy data</li> <li>dummy data</li>
-            <li>dummy data</li> <li>dummy data</li> <li>dummy data</li>
-            <li>dummy data</li> <li>dummy data</li> <li>dummy data</li>
-          </ul>
+          <nav class="navbar bg-light">
+            <ul class="nav navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  {' '}
+                  Home{' '}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  {' '}
+                  Services{' '}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  {' '}
+                  Contact{' '}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  {' '}
+                  Blogs{' '}
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
         <div>
           <Post />
