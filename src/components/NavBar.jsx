@@ -10,6 +10,7 @@ const navBar = () => {
 
   //logout button handler
   const logoutBtn = () => {
+    localStorage.setItem('logedin', '0');
     localStorage.removeItem('token');
     navigate('/login');
   };

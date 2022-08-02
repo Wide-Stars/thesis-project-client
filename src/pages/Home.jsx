@@ -2,9 +2,25 @@ import coverImg from '../assets/3016.jpg';
 import '../styles/home.css';
 import HomeNavbar from '../components/HomeNavbar';
 import Post from '../components/Post';
+import { useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 const Home = () => {
+  useEffect(() => {
+    if (localStorage.getItem('logedin') === '0') {
+      notify();
+      localStorage.setItem('logedin', '1');
+    }
+  }, []);
+  const notify = () =>
+    toast.success('Logged in Successfully.', {
+      autoClose: 5000,
+    });
+
   return (
     <>
+      <ToastContainer />
       <div className="main-container">
         <div className="h1-container">
           <h1>Thesis and project information</h1>
