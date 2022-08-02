@@ -35,26 +35,22 @@ const Home = () => {
             <ul class="nav navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  {' '}
-                  Home{' '}
+                  Home
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  {' '}
-                  Services{' '}
+                  Services
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  {' '}
-                  Contact{' '}
+                  Contact
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  {' '}
-                  Blogs{' '}
+                  Blogs
                 </a>
               </li>
             </ul>

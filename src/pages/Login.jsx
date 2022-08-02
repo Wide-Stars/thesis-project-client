@@ -76,7 +76,7 @@ const Login = () => {
                   <p className="wrn">{errors.password?.message}</p>
                 </div>
                 <div className="col-md-12">
-                  <button className="btn btn-primary float-end">Login</button>
+                  <button className="btn bg-dark btn-primary float-end">Login</button>
                 </div>
                 <ToastContainer />
               </div>

@@ -127,7 +127,7 @@ const Register = () => {
                   </label>
                 </div>
                 <div className="col-md-12">
-                  <button className="btn btn-primary float-end">
+                  <button className="btn bg-dark btn-primary float-end">
                     Signup Now
                   </button>
                 </div>
