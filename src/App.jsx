@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import EditPost from './pages/EditPost';
 import Post from './pages/Post';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="" element={<Home />} />
           <Route path="edit-post/:id" element={<EditPost />}></Route>
           <Route path="post/:id" element={<Post />}></Route>
+          <Route path="profile/:id" element={<Profile />}></Route>
         </Route>
       </Routes>
     </Router>
