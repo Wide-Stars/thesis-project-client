@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../styles/Profile.css';
 
 const Profile = () => {
   return (
@@ -40,7 +39,7 @@ const Profile = () => {
                       strokeWidth={2}
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className="feather feather-globe mr-2 icon-inline"
+                      className="feather feather-globe mr-2 icon-inline mr-5"
                     >
                       <circle cx={12} cy={12} r={10} />
                       <line x1={2} y1={12} x2={22} y2={12} />
