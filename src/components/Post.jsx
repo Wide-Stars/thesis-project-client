@@ -6,7 +6,7 @@ const Post = () => {
   return (
     <div class="container bootstrap snippets bootdey">
       <div class="row">
-        <div class="post-list">
+        <div class="post-list ">
           <div class="row">
             <div class="col-sm-2">
               <div class="picture">

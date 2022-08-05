@@ -7,8 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/extra.css';
-import loginImg from '../assets/images/login.png'
-
+import loginImg from '../assets/images/login.png';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +15,6 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -54,10 +52,13 @@ const Register = () => {
         <div className="row">
           <div className="col-md-6 py-5">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h1 className='text-center mb-5'><span className='primary-highlighter'>Signup </span><span className='text-light'>For Your Account</span></h1>
+              <h1 className="text-center mb-5">
+                <span className="primary-highlighter">Signup </span>
+                <span className="text-light">For Your Account</span>
+              </h1>
 
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>
+                <label className="mb-3 text-light">
                   Name<span className="text-danger">*</span>
                 </label>
                 <input
@@ -71,7 +72,7 @@ const Register = () => {
               </div>
 
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>
+                <label className="mb-3 text-light">
                   Email<span className="text-danger">*</span>
                 </label>
                 <input
@@ -84,7 +85,7 @@ const Register = () => {
                 <p className="wrn">{errors.email?.message}</p>
               </div>
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>
+                <label className="mb-3 text-light">
                   Password<span className="text-danger">*</span>
                 </label>
                 <input
@@ -97,7 +98,7 @@ const Register = () => {
                 <p className="wrn">{errors.password?.message}</p>
               </div>
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>
+                <label className="mb-3 text-light">
                   Confirm Password<span className="text-danger">*</span>
                 </label>
                 <input
@@ -116,7 +117,8 @@ const Register = () => {
                   id="isSupervisor"
                   {...register('isSupervisor')}
                 />
-                <label className='mb-3 text-light form-check-label text-light'
+                <label
+                  className="mb-3 text-light form-check-label text-light"
                   htmlFor="flexCheckDefault"
                 >
                   Supervisor Account
@@ -127,18 +129,15 @@ const Register = () => {
                   Signup Now
                 </button>
               </div>
-
             </form>
             <p className="text-center mt-3 text-secondary">
               If you have account, Please <Link to="/login">Login Now</Link>
             </p>
           </div>
 
-
           <div className="col-md-6 py-5 text-center">
-             <img src={loginImg} height="70%" alt="loginImg" />
+            <img src={loginImg} height="70%" alt="loginImg" />
           </div>
-
         </div>
       </div>
     </div>
