@@ -87,7 +87,11 @@ const Login = () => {
             </p>
           </div>
           <div className="col-md-6 py-5 text-center">
-            <img src={loginImg} height="70%" alt="loginImg" />
+            <img
+              src="https://images.indianexpress.com/2020/04/books_759.jpg"
+              height="70%"
+              alt="loginImg"
+            />
           </div>
         </div>
       </div>

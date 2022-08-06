@@ -47,7 +47,7 @@ const Register = () => {
   };
 
   return (
-    <div className="secondary-bg vh-100">
+    <div className="secondary-bg vh-120">
       <div className="container">
         <div className="row">
           <div className="col-md-6 py-5">
@@ -135,8 +135,13 @@ const Register = () => {
             </p>
           </div>
 
-          <div className="col-md-6 py-5 text-center">
-            <img src={loginImg} height="70%" alt="loginImg" />
+          <div className="col-md-6 my-5 py-5 text-center">
+            <img
+              className="my-5"
+              src="https://images.indianexpress.com/2020/04/books_759.jpg"
+              height="70%"
+              alt="loginImg"
+            />
           </div>
         </div>
       </div>
