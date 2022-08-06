@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 
 import '../styles/extra.css';
-import loginImg from '../assets/images/login.png'
+import loginImg from '../assets/images/login.png';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,13 +24,10 @@ const Login = () => {
   const onSubmit = async (data) => {
     const id = toast.loading('Please wait...');
 
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/user/login',
-      {
-        email: data.email,
-        password: data.password,
-      }
-    );
+    const res = await axios.post('http://localhost:3000/api/user/login', {
+      email: data.email,
+      password: data.password,
+    });
     if (res.data.token) {
       toast.update(id, {
         render: 'All is good',
@@ -49,9 +46,12 @@ const Login = () => {
         <div className="row py-5">
           <div className="col-md-6 py-5">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h1 className='text-center mb-5'><span className='primary-highlighter'>Login </span><span className='text-light'>To Your Account</span></h1>
+              <h1 className="text-center mb-5">
+                <span className="primary-highlighter">Login </span>
+                <span className="text-light">To Your Account</span>
+              </h1>
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>Enter yout email</label>
+                <label className="mb-3 text-light">Enter yout email</label>
                 <input
                   type="email"
                   name="email"
@@ -62,7 +62,7 @@ const Login = () => {
               </div>
               <p className="wrn">{errors.email?.message}</p>
               <div className="mb-3 col-md-12">
-                <label className='mb-3 text-light'>Enter your password</label>
+                <label className="mb-3 text-light">Enter your password</label>
                 <input
                   type="password"
                   name="password"
@@ -83,7 +83,7 @@ const Login = () => {
             </p>
           </div>
           <div className="col-md-6 py-5 text-center">
-             <img src={loginImg} height="70%" alt="loginImg" />
+            <img src={loginImg} height="70%" alt="loginImg" />
           </div>
         </div>
       </div>

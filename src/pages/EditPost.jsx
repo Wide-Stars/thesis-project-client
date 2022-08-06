@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import '../styles/edit-post.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { schemaPost } from '../components/Form';
-
+import axios from 'axios';
 const EditPost = () => {
   //   yep config
   const {
@@ -14,8 +14,15 @@ const EditPost = () => {
     resolver: yupResolver(schemaPost),
   });
   // end of yep config
+
   const onSubmit = async (data) => {
-    console.log(data);
+    const res = await axios.post('http://localhost:3000/api/post/create', {
+      title: data.title,
+      content: data.content,
+    });
+    console.log(res);
+
+    navigate('/');
   };
 
   return (
@@ -53,10 +60,9 @@ const EditPost = () => {
               </p>
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary bg-primary">
                 Create
               </button>
-              <button className="btn btn-default">Cancel</button>
             </div>
           </form>
         </div>
