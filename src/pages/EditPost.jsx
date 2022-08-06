@@ -16,10 +16,13 @@ const EditPost = () => {
   // end of yep config
 
   const onSubmit = async (data) => {
-    const res = await axios.post('http://localhost:3000/api/post/create', {
-      title: data.title,
-      content: data.content,
-    });
+    const res = await axios.post(
+      'https://thesis-app-io.herokuapp.com/api/post/create',
+      {
+        title: data.title,
+        content: data.content,
+      }
+    );
     console.log(res);
 
     navigate('/');
