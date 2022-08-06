@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HomeNavbar = () => {
   return (
-    <div class="d-flex justify-content-around bg-primary color">
+    <div className="d-flex justify-content-around bg-primary color">
       <a className="nav-link text-light font-weight-bold" href="#">
         dept name
       </a>

@@ -315,40 +315,40 @@ const Profile = () => {
             {/* test */}
             <div className="card mt-3">
               <div className="card-body">
-                <div class="row">
-                  <div class="post-list">
-                    <div class="row">
-                      <div class="col-sm-2">
-                        <div class="picture">
+                <div className="row">
+                  <div className="post-list">
+                    <div className="row">
+                      <div className="col-sm-2">
+                        <div className="picture">
                           <img
                             alt="Opt wizard thumbnail"
                             src="https://bootdey.com/img/Content/avatar/avatar7.png"
                           />
                         </div>
                       </div>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <h4>
-                          <a hre="#" class="username">
+                          <a hre="#" className="username">
                             Maruf Rien
                           </a>
                         </h4>
                         <h5>
-                          <i class="fa fa-calendar"></i>
+                          <i className="fa fa-calendar"></i>
                           Aug 06, 12:48
                         </h5>
-                        <p class="description">
+                        <p className="description">
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. In velit lectus, efficitur eu eros vel, luctus
                           aliquet est. Sed sit amet ligula non mauris porta
                           dignissim..
                         </p>
                       </div>
-                      <div class="col-sm-4" data-no-turbolink="">
+                      <div className="col-sm-4" data-no-turbolink="">
                         <a
-                          class="btn btn-info btn-download btn-round pull-right makeLoading"
+                          className="btn btn-info btn-download btn-round pull-right makeLoading"
                           href="#"
                         >
-                          <i class="fa fa-share"></i> View
+                          <i className="fa fa-share"></i> View
                         </a>
                       </div>
                     </div>
@@ -359,40 +359,40 @@ const Profile = () => {
 
             <div className="card mt-3">
               <div className="card-body">
-                <div class="row">
-                  <div class="post-list">
-                    <div class="row">
-                      <div class="col-sm-2">
-                        <div class="picture">
+                <div className="row">
+                  <div className="post-list">
+                    <div className="row">
+                      <div className="col-sm-2">
+                        <div className="picture">
                           <img
                             alt="Opt wizard thumbnail"
                             src="https://bootdey.com/img/Content/avatar/avatar7.png"
                           />
                         </div>
                       </div>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <h4>
-                          <a hre="#" class="username">
+                          <a hre="#" className="username">
                             Maruf Rien
                           </a>
                         </h4>
                         <h5>
-                          <i class="fa fa-calendar"></i>
+                          <i className="fa fa-calendar"></i>
                           Aug 06, 12:48
                         </h5>
-                        <p class="description">
+                        <p className="description">
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. In velit lectus, efficitur eu eros vel, luctus
                           aliquet est. Sed sit amet ligula non mauris porta
                           dignissim..
                         </p>
                       </div>
-                      <div class="col-sm-4" data-no-turbolink="">
+                      <div className="col-sm-4" data-no-turbolink="">
                         <a
-                          class="btn btn-info btn-download btn-round pull-right makeLoading"
+                          className="btn btn-info btn-download btn-round pull-right makeLoading"
                           href="#"
                         >
-                          <i class="fa fa-share"></i> View
+                          <i className="fa fa-share"></i> View
                         </a>
                       </div>
                     </div>
@@ -403,40 +403,40 @@ const Profile = () => {
 
             <div className="card mt-3">
               <div className="card-body">
-                <div class="row">
-                  <div class="post-list">
-                    <div class="row">
-                      <div class="col-sm-2">
-                        <div class="picture">
+                <div className="row">
+                  <div className="post-list">
+                    <div className="row">
+                      <div className="col-sm-2">
+                        <div className="picture">
                           <img
                             alt="Opt wizard thumbnail"
                             src="https://bootdey.com/img/Content/avatar/avatar7.png"
                           />
                         </div>
                       </div>
-                      <div class="col-sm-6">
+                      <div className="col-sm-6">
                         <h4>
-                          <a hre="#" class="username">
+                          <a hre="#" className="username">
                             Maruf Rien
                           </a>
                         </h4>
                         <h5>
-                          <i class="fa fa-calendar"></i>
+                          <i className="fa fa-calendar"></i>
                           Aug 06, 12:48
                         </h5>
-                        <p class="description">
+                        <p className="description">
                           Lorem ipsum dolor sit amet, consectetur adipiscing
                           elit. In velit lectus, efficitur eu eros vel, luctus
                           aliquet est. Sed sit amet ligula non mauris porta
                           dignissim..
                         </p>
                       </div>
-                      <div class="col-sm-4" data-no-turbolink="">
+                      <div className="col-sm-4" data-no-turbolink="">
                         <a
-                          class="btn btn-info btn-download btn-round pull-right makeLoading"
+                          className="btn btn-info btn-download btn-round pull-right makeLoading"
                           href="#"
                         >
-                          <i class="fa fa-share"></i> View
+                          <i className="fa fa-share"></i> View
                         </a>
                       </div>
                     </div>
