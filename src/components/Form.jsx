@@ -15,6 +15,6 @@ export const schemaLogin = yup.object().shape({
   password: yup.string().min(8).max(32).required(),
 });
 export const schemaPost = yup.object().shape({
-  title: yup.string().required('Title is required'),
-  content: yup.string().required('Content is required'),
+  title: yup.string().min(10).required('Title is required'),
+  content: yup.string().min(200).required('Content is required'),
 });
