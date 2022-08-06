@@ -36,6 +36,7 @@ const Login = () => {
       });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('logedin', '0');
+      localStorage.setItem('id', res.data.id);
 
       navigate('/');
     }

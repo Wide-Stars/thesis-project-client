@@ -31,7 +31,10 @@ const Post = () => {
               <div className="row">
                 <div className="col-sm-2">
                   <div className="picture">
-                    <img alt="Opt wizard thumbnail" src={img} />
+                    <img
+                      alt="Opt wizard thumbnail"
+                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                    />
                   </div>
                 </div>
                 <div className="col-sm-6">
