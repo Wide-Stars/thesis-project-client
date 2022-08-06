@@ -38,7 +38,7 @@ const Login = () => {
         isLoading: false,
       });
       localStorage.setItem('token', res.data.token);
-      localStorage.setItem('logedin', '0');
+      localStorage.setItem('logedin', true);
       localStorage.setItem('id', res.data.id);
 
       navigate('/');

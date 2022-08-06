@@ -8,10 +8,11 @@ const navBar = () => {
   const { pathname } = useLocation();
 
   const userId = localStorage.getItem('id');
+  const isLogedin = localStorage.getItem('logedin');
 
   //logout button handler
   const logoutBtn = () => {
-    localStorage.setItem('logedin', '0');
+    localStorage.setItem('logedin', false);
     localStorage.removeItem('token');
     navigate('/login');
   };
@@ -46,28 +47,32 @@ const navBar = () => {
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  pathname === '/login' ? 'active' : ''
-                }  `}
-                aria-current="page"
-                to={'/login'}
-              >
-                Login
-              </Link>
-            </li>{' '}
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  pathname === '/register' ? 'active' : ''
-                }  `}
-                aria-current="page"
-                to={'/register'}
-              >
-                Register
-              </Link>
-            </li>{' '}
+            {pathname === '/register' && (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    pathname === '/login' ? 'active' : ''
+                  }  `}
+                  aria-current="page"
+                  to={'/login'}
+                >
+                  Login
+                </Link>
+              </li>
+            )}
+            {pathname === '/login' && (
+              <li className="nav-item">
+                <Link
+                  className={`nav-link ${
+                    pathname === '/register' ? 'active' : ''
+                  }  `}
+                  aria-current="page"
+                  to={'/register'}
+                >
+                  Register
+                </Link>
+              </li>
+            )}
             <li className="nav-item">
               <Link
                 className={`nav-link ${
