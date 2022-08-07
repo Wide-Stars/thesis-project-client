@@ -29,44 +29,48 @@ const Post = () => {
     <div className="container bootstrap snippets bootdey">
       {postData.length > 0 &&
         postData.map((data) => (
-          <div className="row" key={data._id}>
-            <div className="post-list ">
+          <div className="card mt-3" key={data._id}>
+            <div className="card-body">
               <div className="row">
-                <div className="col-sm-2">
-                  <div className="picture">
-                    <img
-                      alt="Opt wizard thumbnail"
-                      src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                    />
-                  </div>
-                </div>
-                <div className="col-sm-6">
-                  <h4>
-                    <a hre="#" className="nav-link text-info">
-                      {data.postedBy.name}
-                    </a>
-                  </h4>
-                  <h5>
-                    <i className="fa fa-calendar"></i>
-                    {data.dateCreated}
-                  </h5>
-                  <h1 className="mb-3">{data.title}</h1>
-                  <p className="description">{data.content}</p>
-                </div>
-                <div className="col-sm-4" data-no-turbolink="">
-                  {/* <a
+                <div className="post-list ">
+                  <div className="row">
+                    <div className="col-sm-2">
+                      <div className="picture">
+                        <img
+                          alt="Opt wizard thumbnail"
+                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-sm-6">
+                      <h4>
+                        <a hre="#" className="nav-link text-info">
+                          {data.postedBy.name}
+                        </a>
+                      </h4>
+                      <h5>
+                        <i className="fa fa-calendar"></i>
+                        {data.dateCreated}
+                      </h5>
+                      <h1 className="mb-3">{data.title}</h1>
+                      <p className="description">{data.content}</p>
+                    </div>
+                    <div className="col-sm-4" data-no-turbolink="">
+                      {/* <a
                     className="btn btn-info btn-download btn-round pull-right makeLoading"
                     href="#"
                   >
                     <i className="fa fa-share"></i> View
                   </a> */}
 
-                  <Link
-                    className="btn btn-info btn-download btn-round pull-right makeLoading"
-                    to={`/post/${data._id}`}
-                  >
-                    <i className="fa fa-share"></i> View
-                  </Link>
+                      <Link
+                        className="btn btn-info btn-download btn-round pull-right makeLoading"
+                        to={`/post/${data._id}`}
+                      >
+                        <i className="fa fa-share"></i> View
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

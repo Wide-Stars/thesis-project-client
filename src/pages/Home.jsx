@@ -8,9 +8,9 @@ import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
   useEffect(() => {
-    if (localStorage.getItem('logedin') === '0') {
+    if (localStorage.getItem('notify') === '0') {
       notify();
-      localStorage.setItem('logedin', '1');
+      localStorage.setItem('notify', '1');
     }
   }, []);
   const notify = () =>
