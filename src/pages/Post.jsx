@@ -66,7 +66,15 @@ const Post = () => {
             />
             <hr />
             <div className="post-content">
-              <h3 className="text-center">{postData.title}</h3>
+              <h3 className="text-center ">
+                {postData.title}
+                {postData.isApproved ? (
+                  <span class=" m-3 badge text-bg-success">Approved</span>
+                ) : (
+                  <span class=" m-3 badge text-bg-warning">Pending</span>
+                )}
+              </h3>
+
               <hr className="mb-40" />
               <div className="card">
                 <div className="card-body imgP">{postContent}</div>
