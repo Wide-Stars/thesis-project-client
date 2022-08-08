@@ -1,31 +1,58 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import '../styles/edit-post.css';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaPost } from '../components/Form';
+import React, { useState } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
+
 const EditPost = () => {
-  //   yep config
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schemaPost),
-  });
-  // end of yep config
+  const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/post/create',
-      {
-        title: data.title,
-        content: data.content,
+  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const token = localStorage.getItem('token');
+
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    if (title.length < 10 || content.length < 10) {
+      setErrorMessage(
+        'Title must be at least 10 characters long and content must be at least 200 characters long'
+      );
+      return;
+    } else {
+      setErrorMessage('');
+      const res = await axios.post(
+        'http://localhost:3000/api/post/create',
+        { title, content },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        navigate('/');
       }
-    );
-    console.log(res);
+    }
 
-    navigate('/');
+    // const res = await axios.post(
+    //   'http://localhost:3000/api/post/create',
+    //   {
+    //     title: data.title,
+    //     content: data.content,
+    //   }
+    // );
+    // console.log(res);
+
+    // navigate('/');
   };
 
   return (
@@ -33,36 +60,28 @@ const EditPost = () => {
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
           <h1>Create post</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="title">
-                Title <span className="require">*</span>
-              </label>
+              <label htmlFor="title">Title</label>
               <input
                 type="text"
                 className="form-control"
                 name="title"
-                {...register('title')}
+                onChange={onTitleChange}
               />
-              <p className="wrn">{errors.title?.message}</p>
             </div>
             <div className="form-group">
               <label htmlFor="content">Content</label>
-              <textarea
-                rows={6}
-                className="form-control"
-                name="content"
-                defaultValue={''}
-                {...register('content')}
+              <ReactQuill
+                theme="snow"
+                className="h-5"
+                value={content}
+                onChange={setContent}
               />
-              <p className="wrn">{errors.content?.message}</p>
             </div>
+            <div className="form-group"></div>
             <div className="form-group">
-              <p>
-                <span className="require">*</span> - required fields
-              </p>
-            </div>
-            <div className="form-group">
+              <p className="wrn">{errorMessage}</p>
               <button type="submit" className="btn btn-primary bg-primary">
                 Create
               </button>

@@ -24,13 +24,10 @@ const Login = () => {
   const onSubmit = async (data) => {
     const id = toast.loading('Please wait...');
 
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/user/login',
-      {
-        email: data.email,
-        password: data.password,
-      }
-    );
+    const res = await axios.post('http://localhost:3000/api/user/login', {
+      email: data.email,
+      password: data.password,
+    });
     if (res.data.token) {
       toast.update(id, {
         render: 'All is good',
