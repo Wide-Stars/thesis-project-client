@@ -1,18 +1,36 @@
 import '../styles/edit-post.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 
 const EditPost = () => {
   const navigate = useNavigate();
+  const postId = useLocation().pathname.split('/')[2];
+  console.log(postId);
 
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const token = localStorage.getItem('token');
+
+  const getPost = async () => {
+    if (postId) {
+      const post = await axios.get(
+        `http://localhost:3000/api/post/get/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setContent(post.data.content);
+      setTitle(post.data.title);
+    }
+  };
 
   const onTitleChange = (e) => {
     setTitle(e.target.value);
@@ -20,8 +38,25 @@ const EditPost = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (postId) {
+      await axios.post(
+        `http://localhost:3000/api/post/modify/${postId}`,
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-    if (title.length < 10 || content.length < 10) {
+      navigate('/');
+      return;
+    }
+
+    if (title.length < 10 || content.length < 200) {
       setErrorMessage(
         'Title must be at least 10 characters long and content must be at least 200 characters long'
       );
@@ -42,24 +77,18 @@ const EditPost = () => {
         navigate('/');
       }
     }
-
-    // const res = await axios.post(
-    //   'http://localhost:3000/api/post/create',
-    //   {
-    //     title: data.title,
-    //     content: data.content,
-    //   }
-    // );
-    // console.log(res);
-
-    // navigate('/');
   };
+
+  useEffect(() => {
+    console.log('useEffect is running');
+    getPost();
+  }, []);
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
-          <h1>Create post</h1>
+          <h1>{postId ? 'Update Post' : 'Create Post'}</h1>
           <form onSubmit={onSubmit}>
             <div className="form-group">
               <label htmlFor="title">Title</label>
@@ -67,6 +96,7 @@ const EditPost = () => {
                 type="text"
                 className="form-control"
                 name="title"
+                defaultValue={title}
                 onChange={onTitleChange}
               />
             </div>

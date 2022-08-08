@@ -37,7 +37,9 @@ const Post = () => {
     navigate('/');
     location.reload();
   };
-  const handelEdit = async () => {};
+  const handelEdit = async () => {
+    navigate(`/edit-post/${path}`);
+  };
   const handelDelete = async () => {
     const token = localStorage.getItem('token');
     await axios.delete(`http://localhost:3000/api/post/remove/${path}`, {
@@ -87,7 +89,11 @@ const Post = () => {
                   >
                     Delete
                   </button>
-                  <button type="button" class="btn m-3 btn-outline-warning">
+                  <button
+                    type="button"
+                    onClick={handelEdit}
+                    class="btn m-3 btn-outline-warning"
+                  >
                     Edit
                   </button>
                 </div>
