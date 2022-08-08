@@ -38,7 +38,15 @@ const Post = () => {
     location.reload();
   };
   const handelEdit = async () => {};
-  const handelDelete = async () => {};
+  const handelDelete = async () => {
+    const token = localStorage.getItem('token');
+    await axios.delete(`http://localhost:3000/api/post/remove/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    navigate('/');
+  };
 
   useEffect(() => {
     getPostData();
@@ -72,7 +80,11 @@ const Post = () => {
                       Approve
                     </button>
                   )}
-                  <button type="button" class="btn m-3 btn-outline-danger">
+                  <button
+                    type="button"
+                    onClick={handelDelete}
+                    class="btn m-3 btn-outline-danger"
+                  >
                     Delete
                   </button>
                   <button type="button" class="btn m-3 btn-outline-warning">
