@@ -7,6 +7,7 @@ import parse from 'html-react-parser';
 const Post = () => {
   const path = useLocation().pathname.split('/')[2];
   const [postData, setPostData] = useState([]);
+  const [postContent, setPostContent] = useState('');
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
@@ -16,6 +17,7 @@ const Post = () => {
       },
     });
     setPostData(data.data);
+    setPostContent(parse(data.data.content));
   };
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const Post = () => {
             <div className="post-content">
               <h3>{postData.title}</h3>
               <hr className="mb-40" />
-              {parse(postData.content)}
+              {postContent}
               <ul className="list-inline share-buttons">
                 <li className="list-inline-item">Share Post:</li>
                 <li className="list-inline-item">

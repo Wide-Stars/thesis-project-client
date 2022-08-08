@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
+import { htmlToText } from 'html-to-text';
 
 const Profile = () => {
   const path = useLocation().pathname.split('/')[2];
@@ -16,7 +17,15 @@ const Profile = () => {
         },
       }
     );
-    setPostData(data.data);
+    const newData = data.data.map((item) => ({
+      ...item,
+      content: htmlToText(item.content)
+        .split(' ')
+        .slice(0, 30)
+        .join(' ')
+        .concat('......'),
+    }));
+    setPostData(newData);
   };
 
   useEffect(() => {

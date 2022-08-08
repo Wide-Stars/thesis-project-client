@@ -3,6 +3,7 @@ import '../styles/post.css';
 import img from '../assets/8b167af653c2399dd93b952a48740620.jpg';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import { htmlToText } from 'html-to-text';
 
 const Post = () => {
   const [postData, setPostData] = useState([]);
@@ -14,7 +15,18 @@ const Post = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    setPostData(data.data);
+
+    const newData = data.data.map((item) => ({
+      ...item,
+      content: htmlToText(item.content)
+        .split(' ')
+        .slice(0, 30)
+        .join(' ')
+        .concat('......'),
+    }));
+
+    console.log(newData);
+    setPostData(newData);
   };
 
   useEffect(() => {
