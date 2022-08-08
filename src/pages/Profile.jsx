@@ -99,7 +99,7 @@ const Profile = () => {
                     <div className="row" key={data._id}>
                       <div className="post-list ">
                         <div className="row">
-                          <div className="col-sm-3">
+                          <div className="col-sm-3 text-center">
                             {/* img */}
                             <div className="picture">
                               <img
@@ -107,6 +107,13 @@ const Profile = () => {
                                 src="https://bootdey.com/img/Content/avatar/avatar7.png"
                               />
                             </div>
+                            {data.isApproved ? (
+                              <span class=" m-3 badge text-bg-success">
+                                Approved
+                              </span>
+                            ) : (
+                              <span class="badge text-bg-warning">Pending</span>
+                            )}
                           </div>
                           <div className="col-sm-6">
                             <h4>

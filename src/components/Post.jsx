@@ -44,14 +44,20 @@ const Post = () => {
               <div className="row">
                 <div className="post-list ">
                   <div className="row">
-                    <div className="col-sm-2">
+                    <div className="col-sm-2 text-center">
                       <div className="picture">
                         <img
                           alt="Opt wizard thumbnail"
                           src="https://bootdey.com/img/Content/avatar/avatar7.png"
                         />
                       </div>
+                      {data.isApproved ? (
+                        <span class=" m-3 badge text-bg-success">Approved</span>
+                      ) : (
+                        <span class="badge text-bg-warning">Pending</span>
+                      )}
                     </div>
+
                     <div className="col-sm-6">
                       <h4>
                         <a hre="#" className="nav-link text-info">
@@ -60,10 +66,10 @@ const Post = () => {
                       </h4>
                       <h5>
                         <i className="fa fa-calendar"></i>
-                        {/* {data.dateCreated} */}
                         {moment(data.dateCreated).format('D MMM YYYY')}
                       </h5>
-                      <h1 className="mb-3">{data.title}</h1>
+                      <h2 className="mb-3">{data.title}</h2>
+
                       <p className="description">{data.content}</p>
                     </div>
                     <div className="col-sm-4" data-no-turbolink="">
