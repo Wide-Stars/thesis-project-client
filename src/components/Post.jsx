@@ -4,6 +4,7 @@ import img from '../assets/8b167af653c2399dd93b952a48740620.jpg';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { htmlToText } from 'html-to-text';
+import moment from 'moment';
 
 const Post = () => {
   const [postData, setPostData] = useState([]);
@@ -59,7 +60,8 @@ const Post = () => {
                       </h4>
                       <h5>
                         <i className="fa fa-calendar"></i>
-                        {data.dateCreated}
+                        {/* {data.dateCreated} */}
+                        {moment(data.dateCreated).format('D MMM YYYY')}
                       </h5>
                       <h1 className="mb-3">{data.title}</h1>
                       <p className="description">{data.content}</p>

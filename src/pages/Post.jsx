@@ -26,13 +26,13 @@ const Post = () => {
   }, []);
   return (
     <>
-      <div className="container pb50">
+      <div className="container pb50 ">
         <div className="mt-3">
           <article>
             <img
               src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
               alt=""
-              className="img-fluid mb30"
+              className="h-70 w-auto "
             />
             <div className="post-content">
               <h3>{postData.title}</h3>
