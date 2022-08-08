@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/singlePost.css';
 import { useLocation } from 'react-router-dom';
+import parse from 'html-react-parser';
 
 const Post = () => {
   const path = useLocation().pathname.split('/')[2];
@@ -34,7 +35,7 @@ const Post = () => {
             <div className="post-content">
               <h3>{postData.title}</h3>
               <hr className="mb-40" />
-              <p>{postData.content}</p>
+              {parse(postData.content)}
               <ul className="list-inline share-buttons">
                 <li className="list-inline-item">Share Post:</li>
                 <li className="list-inline-item">
