@@ -72,35 +72,40 @@ const Profile = () => {
               </div>
             </div>
 
-            <div className="card mt-3 ">
-              <div className="row text-left ">
-                <div className="col-sm-4 ">
-                  <h6 className="">Full Name</h6>
+            <div className="card mt-3  ">
+              <div className="card-body">
+                <div className="row text-left ">
+                  <div className="col-sm-4 ">
+                    <h6 className="ml-">Full Name</h6>
+                  </div>
+                  <div className="col-sm-7 text-secondary">
+                    {userInfo?.name}
+                  </div>
                 </div>
-                <div className="col-sm-7 text-secondary">{userInfo?.name}</div>
-              </div>
-              <hr />
-              <div className="row text-left ">
-                <div className="col-sm-4">
-                  <h6 className="">Email</h6>
+                <hr />
+                <div className="row text-left ">
+                  <div className="col-sm-4">
+                    <h6 className="ml-">Email</h6>
+                  </div>
+                  <div className="col-sm-7 text-secondary">
+                    {userInfo?.email}
+                  </div>
                 </div>
-                <div className="col-sm-7 text-secondary">{userInfo?.email}</div>
-              </div>
-              <hr />
+                <hr />
 
-              <div className="row text-left ">
-                <div className="col-sm-4">
-                  <h6 className="">Account type:</h6>
+                <div className="row text-left ">
+                  <div className="col-sm-4">
+                    <h6 className="ml-">Account type:</h6>
+                  </div>
+                  <div className="col-sm-7 text-secondary">
+                    {userInfo?.isSupervisor ? '  Supervisor' : '  Student'}
+                  </div>
                 </div>
-                <div className="col-sm-7 text-secondary">
-                  {userInfo?.isSupervisor ? '  Supervisor' : '  Student'}
-                </div>
+                <hr />
               </div>
-              <hr />
-
-              <Link className="text-center mb-3" to={'/add-post'}>
+              <Link className="  mb-3 mt-0 text-center" to={'/add-post'}>
                 <button type="button" class="btn btn-info">
-                  Create new post
+                  Create a new post
                 </button>
               </Link>
             </div>
