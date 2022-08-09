@@ -99,13 +99,18 @@ const Post = () => {
                   ) : (
                     ''
                   )}
-                  <button
-                    type="button"
-                    onClick={handelDelete}
-                    class="btn m-3 btn-outline-danger"
-                  >
-                    Delete
-                  </button>
+                  {isSupervisor ||
+                  postData.postedBy?._id === localStorage.getItem('id') ? (
+                    <button
+                      type="button"
+                      onClick={handelDelete}
+                      class="btn m-3 btn-outline-danger"
+                    >
+                      Delete
+                    </button>
+                  ) : (
+                    ''
+                  )}
                   {postData.postedBy?._id === localStorage.getItem('id') ? (
                     <button
                       type="button"
