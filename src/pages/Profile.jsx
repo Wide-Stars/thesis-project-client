@@ -7,11 +7,12 @@ import { htmlToText } from 'html-to-text';
 const Profile = () => {
   const path = useLocation().pathname.split('/')[2];
   const [postData, setPostData] = useState([]);
+  const [userInfo, setUserInfo] = useState();
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `http://localhost:3000/api/post/get/user-post/${path}`,
+      `https://thesis-app-io.herokuapp.com/api/post/get/user-post/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -26,14 +27,28 @@ const Profile = () => {
         .join(' ')
         .concat('......'),
     }));
+    if (newData.length === 0) {
+      const userData = await axios.get(
+        `https://thesis-app-io.herokuapp.com/api/user/${path}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUserInfo(userData.data);
+      console.log(userData.data);
+      return;
+    }
+
     setPostData(newData);
+    setUserInfo(newData[0].postedBy);
+    console.log();
   };
 
   useEffect(() => {
     getPostData();
   }, []);
-
-  const userInfo = postData[0]?.postedBy;
 
   return (
     <div className="container mt-4">

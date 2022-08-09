@@ -23,24 +23,33 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const id = toast.loading('Please wait...');
+    try {
+      const res = await axios.post(
+        'https://thesis-app-io.herokuapp.com/api/user/login',
+        {
+          email: data.email,
+          password: data.password,
+        }
+      );
+      if (res.data.token) {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('logedin', true);
+        localStorage.setItem('notify', '0');
+        localStorage.setItem('id', res.data.id);
+        localStorage.setItem(
+          'isSupervisor',
+          res.data.user.isSupervisor ? 1 : 0
+        );
 
-    const res = await axios.post('http://localhost:3000/api/user/login', {
-      email: data.email,
-      password: data.password,
-    });
-    if (res.data.token) {
+        navigate('/');
+      }
+    } catch (error) {
       toast.update(id, {
-        render: 'All is good',
-        type: 'success',
+        render: 'Login failed Please try again',
+        type: 'error',
         isLoading: false,
+        autoClose: 5000,
       });
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('logedin', true);
-      localStorage.setItem('notify', '0');
-      localStorage.setItem('id', res.data.id);
-      localStorage.setItem('isSupervisor', res.data.user.isSupervisor ? 1 : 0);
-
-      navigate('/');
     }
   };
   return (

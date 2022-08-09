@@ -18,7 +18,7 @@ const EditPost = () => {
   const getPost = async () => {
     if (postId) {
       const post = await axios.get(
-        `http://localhost:3000/api/post/get/${postId}`,
+        `https://thesis-app-io.herokuapp.com/api/post/get/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ const EditPost = () => {
     e.preventDefault();
     if (postId) {
       await axios.post(
-        `http://localhost:3000/api/post/modify/${postId}`,
+        `https://thesis-app-io.herokuapp.com/api/post/modify/${postId}`,
         {
           title,
           content,
@@ -63,7 +63,7 @@ const EditPost = () => {
     } else {
       setErrorMessage('');
       const res = await axios.post(
-        'http://localhost:3000/api/post/create',
+        'https://thesis-app-io.herokuapp.com/api/post/create',
         { title, content },
         {
           headers: {

@@ -14,7 +14,7 @@ const Home = () => {
     }
   }, []);
   const notify = () =>
-    toast.success('Logged in Successfully.', {
+    toast.success('Logged in Successfully', {
       autoClose: 5000,
     });
 
