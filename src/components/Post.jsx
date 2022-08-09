@@ -56,7 +56,9 @@ const Post = () => {
                       <div className="picture">
                         <img
                           alt="Opt wizard thumbnail"
-                          src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                          src={`https://bootdey.com/img/Content/avatar/avatar${
+                            data.postedBy?.avatar ? data.postedBy?.avatar : '7'
+                          }.png`}
                         />
                       </div>
                       {data.isApproved ? (
@@ -69,7 +71,7 @@ const Post = () => {
                     <div className="col-sm-6">
                       <h4>
                         <a hre="#" className="nav-link text-info">
-                          {data.postedBy.name}
+                          {data.postedBy?.name}
                         </a>
                       </h4>
                       <h5>

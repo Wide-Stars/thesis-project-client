@@ -22,30 +22,39 @@ const Register = () => {
   const onSubmit = async (data) => {
     const id = toast.loading('Please wait...');
 
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/user/create',
-      {
-        name: data.name,
-        password: data.password,
-        isSupervisor: data.isSupervisor,
-        email: data.email,
-      }
-    );
-    // update post and logedin value
-    toast.update(id, {
-      render: 'All is good',
-      type: 'success',
-      isLoading: false,
-    });
-    localStorage.setItem('logedin', '0');
+    try {
+      const res = await axios.post(
+        'https://thesis-app-io.herokuapp.com/api/user/create',
+        {
+          name: data.name,
+          password: data.password,
+          isSupervisor: data.isSupervisor,
+          email: data.email,
+          avatar: Math.round(Math.random() * 8),
+        }
+      );
+      console.log(res);
+      // update post and logedin value
 
-    const token = res.data.payload;
-    // save token to local storage
-    localStorage.setItem('token', token);
+      localStorage.setItem('logedin', '0');
+
+      const token = res.data.payload;
+      // save token to local storage
+      localStorage.setItem('token', token);
+      navigate('/login');
+    } catch (err) {
+      toast.update(id, {
+        render: 'Something went wrong. Please try again',
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+      });
+    }
   };
 
   return (
     <div className="secondary-bg vh-120">
+      <ToastContainer />
       <div className="container">
         <div className="row">
           <div className="col-md-6 py-5">

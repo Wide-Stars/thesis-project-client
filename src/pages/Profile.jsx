@@ -49,7 +49,7 @@ const Profile = () => {
   useEffect(() => {
     getPostData();
   }, []);
-
+  console.log(userInfo);
   return (
     <div className="container mt-4">
       <div className="main-body">
@@ -59,7 +59,9 @@ const Profile = () => {
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                    src={`https://bootdey.com/img/Content/avatar/avatar${
+                      userInfo?.avatar ? userInfo?.avatar : '7'
+                    }.png`}
                     alt="Admin"
                     className="rounded-circle h-25"
                     width={150}
@@ -130,7 +132,9 @@ const Profile = () => {
                             <div className="picture">
                               <img
                                 alt="Opt wizard thumbnail"
-                                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                src={`https://bootdey.com/img/Content/avatar/avatar${
+                                  userInfo?.avatar ? userInfo?.avatar : '7'
+                                }.png`}
                               />
                             </div>
                             {data.isApproved ? (
