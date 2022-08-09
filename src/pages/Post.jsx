@@ -1,23 +1,53 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/singlePost.css';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import parse from 'html-react-parser';
+import '../styles/singlePost.css';
 
 const Post = () => {
+  const navigate = useNavigate();
   const path = useLocation().pathname.split('/')[2];
   const [postData, setPostData] = useState([]);
+  const [postContent, setPostContent] = useState('');
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
-    const data = await axios.get(
-      `https://thesis-app-io.herokuapp.com/api/post/get/${path}`,
+    const data = await axios.get(`http://localhost:3000/api/post/get/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setPostData(data.data);
+    setPostContent(parse(data.data.content));
+  };
+
+  const handelApprove = async () => {
+    const token = localStorage.getItem('token');
+    const data = await axios.post(
+      `http://localhost:3000/api/post/approve/${path}`,
+      {},
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    setPostData(data.data);
+    postData.isApproved = true;
+    navigate('/');
+    location.reload();
+  };
+  const handelEdit = async () => {
+    navigate(`/edit-post/${path}`);
+  };
+  const handelDelete = async () => {
+    const token = localStorage.getItem('token');
+    await axios.delete(`http://localhost:3000/api/post/remove/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    navigate('/');
   };
 
   useEffect(() => {
@@ -26,50 +56,62 @@ const Post = () => {
   }, []);
   return (
     <>
-      <div className="container pb50">
+      <div className="container pb50 ">
         <div className="mt-3">
           <article>
             <img
               src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
               alt=""
-              className="img-fluid mb30"
+              className="coverImg mb-5 "
             />
+            <hr />
             <div className="post-content">
-              <h3>{postData.title}</h3>
+              <h3 className="text-center ">
+                {postData.title}
+                {postData.isApproved ? (
+                  <span class=" m-3 badge text-bg-success">Approved</span>
+                ) : (
+                  <span class=" m-3 badge text-bg-warning">Pending</span>
+                )}
+              </h3>
+
               <hr className="mb-40" />
-              <p>{postData.content}</p>
-              <ul className="list-inline share-buttons">
-                <li className="list-inline-item">Share Post:</li>
-                <li className="list-inline-item">
-                  <a
-                    href="#"
-                    className="social-icon-sm si-dark si-colored-facebook si-gray-round"
+              <div className="card">
+                <div className="card-body imgP">{postContent}</div>
+              </div>
+              <div className="card">
+                <div className="card-body text-center">
+                  {!postData.isApproved && (
+                    <button
+                      type="button"
+                      onClick={handelApprove}
+                      class={`btn m-3 btn-outline-success  `}
+                    >
+                      Approve
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={handelDelete}
+                    class="btn m-3 btn-outline-danger"
                   >
-                    <i className="fa fa-facebook" />
-                    <i className="fa fa-facebook" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a
-                    href="#"
-                    className="social-icon-sm si-dark si-colored-twitter si-gray-round"
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handelEdit}
+                    class="btn m-3 btn-outline-warning"
                   >
-                    <i className="fa fa-twitter" />
-                    <i className="fa fa-twitter" />
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a
-                    href="#"
-                    className="social-icon-sm si-dark si-colored-linkedin si-gray-round"
-                  >
-                    <i className="fa fa-linkedin" />
-                    <i className="fa fa-linkedin" />
-                  </a>
-                </li>
-              </ul>
+                    Edit
+                  </button>
+                </div>
+              </div>
               <hr className="mb40" />
-              <h3 className="mb40 text-uppercase font500">About Author</h3>
+              <h3 className="mb40 text-center text-uppercase font500">
+                About Author
+              </h3>
+              <hr className="mb40" />
+
               <div className="media mb40">
                 <i className="d-flex mr-3 fa fa-user-circle fa-5x text-primary" />
                 <div className="media-body">

@@ -1,68 +1,117 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
 import '../styles/edit-post.css';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { schemaPost } from '../components/Form';
+import React, { useState, useEffect } from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 import axios from 'axios';
+
 const EditPost = () => {
-  //   yep config
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schemaPost),
-  });
-  // end of yep config
+  const navigate = useNavigate();
+  const postId = useLocation().pathname.split('/')[2];
+  console.log(postId);
 
-  const onSubmit = async (data) => {
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/post/create',
-      {
-        title: data.title,
-        content: data.content,
-      }
-    );
-    console.log(res);
+  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const token = localStorage.getItem('token');
 
-    navigate('/');
+  const getPost = async () => {
+    if (postId) {
+      const post = await axios.get(
+        `http://localhost:3000/api/post/get/${postId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      setContent(post.data.content);
+      setTitle(post.data.title);
+    }
   };
+
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (postId) {
+      await axios.post(
+        `http://localhost:3000/api/post/modify/${postId}`,
+        {
+          title,
+          content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      navigate('/');
+      return;
+    }
+
+    if (title.length < 10 || content.length < 200) {
+      setErrorMessage(
+        'Title must be at least 10 characters long and content must be at least 200 characters long'
+      );
+      return;
+    } else {
+      setErrorMessage('');
+      const res = await axios.post(
+        'http://localhost:3000/api/post/create',
+        { title, content },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (res.status === 200) {
+        navigate('/');
+      }
+    }
+  };
+
+  useEffect(() => {
+    console.log('useEffect is running');
+    getPost();
+  }, []);
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-8 col-md-offset-2">
-          <h1>Create post</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>{postId ? 'Update Post' : 'Create Post'}</h1>
+          <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="title">
-                Title <span className="require">*</span>
-              </label>
+              <label htmlFor="title">Title</label>
               <input
                 type="text"
                 className="form-control"
                 name="title"
-                {...register('title')}
+                defaultValue={title}
+                onChange={onTitleChange}
               />
-              <p className="wrn">{errors.title?.message}</p>
             </div>
             <div className="form-group">
               <label htmlFor="content">Content</label>
-              <textarea
-                rows={6}
-                className="form-control"
-                name="content"
-                defaultValue={''}
-                {...register('content')}
+              <ReactQuill
+                theme="snow"
+                className="h-5"
+                value={content}
+                onChange={setContent}
               />
-              <p className="wrn">{errors.content?.message}</p>
             </div>
+            <div className="form-group"></div>
             <div className="form-group">
-              <p>
-                <span className="require">*</span> - required fields
-              </p>
-            </div>
-            <div className="form-group">
+              <p className="wrn">{errorMessage}</p>
               <button type="submit" className="btn btn-primary bg-primary">
                 Create
               </button>
