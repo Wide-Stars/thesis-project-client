@@ -113,7 +113,7 @@ const EditPost = () => {
             <div className="form-group">
               <p className="wrn">{errorMessage}</p>
               <button type="submit" className="btn btn-primary bg-primary">
-                Create
+                {postId ? 'Update' : 'Create'}
               </button>
             </div>
           </form>
