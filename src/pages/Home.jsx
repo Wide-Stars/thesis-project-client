@@ -56,9 +56,8 @@ const Home = () => {
             </ul>
           </nav>
         </div>
-        <div>
-          <Post />
-        </div>
+        <div></div>
+        <Post />
       </div>
     </>
   );

@@ -38,6 +38,13 @@ const Post = () => {
 
   return (
     <div className="container bootstrap snippets bootdey">
+      {postData.length === 0 && (
+        <div className="card ">
+          <div className="card-body p-5 text-center">
+            <h3>You don't have any post</h3>
+          </div>
+        </div>
+      )}
       {postData.length > 0 &&
         postData.map((data) => (
           <div className="card mt-3" key={data._id}>
