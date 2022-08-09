@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation, Link } from 'react-router-dom';
 import { htmlToText } from 'html-to-text';
-import moment from 'moment';
+// import moment from 'moment';
 
 const Profile = () => {
   const path = useLocation().pathname.split('/')[2];
@@ -123,7 +123,8 @@ const Profile = () => {
                             </h4>
                             <h5>
                               <i className="fa fa-calendar"></i>
-                              {moment(data.dateCreated).format('D MMM YYYY')}
+                              {/* {moment(data.dateCreated).format('D MMM YYYY')} */}
+                              {data.dateCreated}
                             </h5>
                             <h1 className="mb-3">{data.title}</h1>
                             <p className="description">{data.content}</p>
