@@ -38,6 +38,7 @@ const Login = () => {
       localStorage.setItem('logedin', true);
       localStorage.setItem('notify', '0');
       localStorage.setItem('id', res.data.id);
+      localStorage.setItem('isSupervisor', res.data.user.isSupervisor ? 1 : 0);
 
       navigate('/');
     }

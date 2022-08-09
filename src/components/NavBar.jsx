@@ -14,10 +14,12 @@ const navBar = () => {
   const logoutBtn = () => {
     localStorage.setItem('logedin', false);
     localStorage.removeItem('token');
+    localStorage.removeItem('notify');
+    localStorage.removeItem('id');
+
     navigate('/login');
   };
 
-  console.log();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark primary-bg">

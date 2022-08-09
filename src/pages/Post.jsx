@@ -6,6 +6,8 @@ import parse from 'html-react-parser';
 import '../styles/singlePost.css';
 
 const Post = () => {
+  const isSupervisor = +localStorage.getItem('isSupervisor');
+  console.log(typeof isSupervisor);
   const navigate = useNavigate();
   const path = useLocation().pathname.split('/')[2];
   const [postData, setPostData] = useState([]);
@@ -13,14 +15,11 @@ const Post = () => {
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
-    const data = await axios.get(
-      `https://thesis-app-io.herokuapp.com/api/post/get/${path}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const data = await axios.get(`http://localhost:3000/api/post/get/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     setPostData(data.data);
     setPostContent(parse(data.data.content));
   };
@@ -28,7 +27,7 @@ const Post = () => {
   const handelApprove = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.post(
-      `https://thesis-app-io.herokuapp.com/api/post/approve/${path}`,
+      `http://localhost:3000/api/post/approve/${path}`,
       {},
       {
         headers: {
@@ -45,20 +44,16 @@ const Post = () => {
   };
   const handelDelete = async () => {
     const token = localStorage.getItem('token');
-    await axios.delete(
-      `https://thesis-app-io.herokuapp.com/api/post/remove/${path}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    await axios.delete(`http://localhost:3000/api/post/remove/${path}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     navigate('/');
   };
 
   useEffect(() => {
     getPostData();
-    console.log(postData);
   }, []);
   return (
     <>
@@ -87,7 +82,7 @@ const Post = () => {
               </div>
               <div className="card">
                 <div className="card-body text-center">
-                  {!postData.isApproved && (
+                  {isSupervisor && !postData.isApproved ? (
                     <button
                       type="button"
                       onClick={handelApprove}
@@ -95,6 +90,8 @@ const Post = () => {
                     >
                       Approve
                     </button>
+                  ) : (
+                    ''
                   )}
                   <button
                     type="button"
@@ -103,13 +100,17 @@ const Post = () => {
                   >
                     Delete
                   </button>
-                  <button
-                    type="button"
-                    onClick={handelEdit}
-                    class="btn m-3 btn-outline-warning"
-                  >
-                    Edit
-                  </button>
+                  {postData.postedBy?._id === localStorage.getItem('id') ? (
+                    <button
+                      type="button"
+                      onClick={handelEdit}
+                      class="btn m-3 btn-outline-warning"
+                    >
+                      Edit
+                    </button>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
               <hr className="mb40" />

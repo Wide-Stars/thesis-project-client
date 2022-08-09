@@ -22,15 +22,12 @@ const Register = () => {
   const onSubmit = async (data) => {
     const id = toast.loading('Please wait...');
 
-    const res = await axios.post(
-      'https://thesis-app-io.herokuapp.com/api/user/create',
-      {
-        name: data.name,
-        password: data.password,
-        isSupervisor: data.isSupervisor,
-        email: data.email,
-      }
-    );
+    const res = await axios.post('http://localhost:3000/api/user/create', {
+      name: data.name,
+      password: data.password,
+      isSupervisor: data.isSupervisor,
+      email: data.email,
+    });
     // update post and logedin value
     toast.update(id, {
       render: 'All is good',
@@ -42,8 +39,6 @@ const Register = () => {
     const token = res.data.payload;
     // save token to local storage
     localStorage.setItem('token', token);
-
-    navigate('/');
   };
 
   return (

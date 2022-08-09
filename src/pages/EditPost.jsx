@@ -9,7 +9,6 @@ import axios from 'axios';
 const EditPost = () => {
   const navigate = useNavigate();
   const postId = useLocation().pathname.split('/')[2];
-  console.log(postId);
 
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
@@ -80,7 +79,6 @@ const EditPost = () => {
   };
 
   useEffect(() => {
-    console.log('useEffect is running');
     getPost();
   }, []);
 
