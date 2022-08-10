@@ -83,34 +83,37 @@ const EditPost = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-8 col-md-offset-2">
-          <h1>{postId ? 'Update Post' : 'Create Post'}</h1>
+    <div className="container ">
+      <div className="row ">
+        <div className="col-md-12 col-md-offset-2 ">
+          <h1 className="text-center mt-3 ">
+            {postId ? 'Update Post' : 'Create Post'}
+          </h1>
           <form onSubmit={onSubmit}>
-            <div className="form-group">
+            <div className="form-group m-2">
               <label htmlFor="title">Title</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control "
                 name="title"
                 defaultValue={title}
                 onChange={onTitleChange}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="content">Content</label>
-              <ReactQuill
-                theme="snow"
-                className="h-5"
-                value={content}
-                onChange={setContent}
-              />
-            </div>
+
+            <label htmlFor="content">Content</label>
+            <ReactQuill
+              theme="snow"
+              className="h-5"
+              value={content}
+              onChange={setContent}
+              style={{ height: '14rem' }}
+            />
+
             <div className="form-group"></div>
             <div className="form-group text-center">
               <p className="wrn">{errorMessage}</p>
-              <button type="submit" className="btn btn-primary bg-primary">
+              <button type="submit" className="btn btn-primary bg-primary mt-5">
                 {postId ? 'Update Thesis' : 'Submit Thesis'}
               </button>
             </div>
