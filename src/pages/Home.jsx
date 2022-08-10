@@ -5,6 +5,7 @@ import Post from '../components/Post';
 import { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Footer from '../components/Footer';
 
 const Home = () => {
   useEffect(() => {

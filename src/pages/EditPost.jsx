@@ -108,10 +108,10 @@ const EditPost = () => {
               />
             </div>
             <div className="form-group"></div>
-            <div className="form-group">
+            <div className="form-group text-center">
               <p className="wrn">{errorMessage}</p>
               <button type="submit" className="btn btn-primary bg-primary">
-                {postId ? 'Update' : 'Create'}
+                {postId ? 'Update Thesis' : 'Submit Thesis'}
               </button>
             </div>
           </form>
