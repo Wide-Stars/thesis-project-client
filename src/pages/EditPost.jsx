@@ -83,8 +83,8 @@ const EditPost = () => {
   }, []);
 
   return (
-    <div className="container ">
-      <div className="row ">
+    <div className="container  ">
+      <div className="row w-20\\">
         <div className="col-md-12 col-md-offset-2 ">
           <h1 className="text-center mt-3 ">
             {postId ? 'Update Post' : 'Create Post'}

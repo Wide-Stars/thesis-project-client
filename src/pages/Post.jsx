@@ -8,6 +8,7 @@ import '../styles/singlePost.css';
 const Post = () => {
   const isSupervisor = +localStorage.getItem('isSupervisor');
   console.log(typeof isSupervisor);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const path = useLocation().pathname.split('/')[2];
   const [postData, setPostData] = useState([]);
@@ -25,6 +26,7 @@ const Post = () => {
     );
     setPostData(data.data);
     setPostContent(parse(data.data.content));
+    setLoading(false);
   };
 
   const handelApprove = async () => {
@@ -63,96 +65,107 @@ const Post = () => {
   }, []);
   return (
     <>
-      <div className="container pb50 ">
-        <div className="mt-3">
-          <article>
-            <img
-              src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-              alt=""
-              className="coverImg mb-5 "
-            />
-            <hr />
-            <div className="post-content">
-              <h3 className="text-center ">
-                {postData.title}
-                {postData.isApproved ? (
-                  <span class=" m-3 badge text-bg-success">Approved</span>
-                ) : (
-                  <span class=" m-3 badge text-bg-warning">Pending</span>
-                )}
-              </h3>
-
-              <hr className="mb-40" />
-              <div className="card">
-                <div className="card-body imgP">{postContent}</div>
-              </div>
-              <div className="card">
-                <div className="card-body text-center">
-                  {isSupervisor && !postData.isApproved ? (
-                    <button
-                      type="button"
-                      onClick={handelApprove}
-                      class={`btn m-3 btn-outline-success  `}
-                    >
-                      Approve
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                  {isSupervisor ||
-                  postData.postedBy?._id === localStorage.getItem('id') ? (
-                    <button
-                      type="button"
-                      onClick={handelDelete}
-                      class="btn m-3 btn-outline-danger"
-                    >
-                      Delete
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                  {postData.postedBy?._id === localStorage.getItem('id') ? (
-                    <button
-                      type="button"
-                      onClick={handelEdit}
-                      class="btn m-3 btn-outline-warning"
-                    >
-                      Edit
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                </div>
-              </div>
-              <hr className="mb40" />
-              <h3 className="mb40 text-center text-uppercase font500">
-                About Author
-              </h3>
-              <hr className="mb40" />
-
-              <div className="media mb40">
-                <i className="d-flex mr-3 fa fa-user-circle fa-5x text-primary" />
-                <div className="media-body">
-                  <h4 className="mt-0 font700">{postData.postedBy?.name}</h4>{' '}
-                  {postData.postedBy?.name} is a USA Today bestselling author of
-                  swashbuckling action-adventure romance. She’s the wife of a
-                  rock star, and the mother of two young adults, but she’s also
-                  been a ballerina, a typographer, a film composer, a piano
-                  player, a singer in an all-girl rock band, and a voice in
-                  those violent video games you won’t let your kids play. She
-                  does her best writing on cruise ships, in Scottish castles, on
-                  her husband’s tour bus, and at home in her sunny southern
-                  California garden. Glynnis loves to play medieval matchmaker,
-                  transporting readers to a place where the bold heroes have
-                  endearing flaws, the women are stronger than they look, the
-                  land is lush and untamed, and chivalry is alive and well
-                </div>
-              </div>
-              <hr className="mb40" />
-            </div>
-          </article>
+      {' '}
+      {loading && (
+        <div class="text-center container d-flex justify-content-center align-items-center">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         </div>
-      </div>
+      )}
+      {!loading && (
+        <div className="container pb50 ">
+          <div className="mt-3">
+            <article>
+              <img
+                src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                alt=""
+                className="coverImg mb-5 "
+              />
+              <hr />
+              <div className="post-content">
+                <h3 className="text-center ">
+                  {postData.title}
+                  {postData.isApproved ? (
+                    <span class=" m-3 badge text-bg-success">Approved</span>
+                  ) : (
+                    <span class=" m-3 badge text-bg-warning">Pending</span>
+                  )}
+                </h3>
+
+                <hr className="mb-40" />
+                <div className="card">
+                  <div className="card-body imgP">{postContent}</div>
+                </div>
+                <div className="card">
+                  <div className="card-body text-center">
+                    {isSupervisor && !postData.isApproved ? (
+                      <button
+                        type="button"
+                        onClick={handelApprove}
+                        class={`btn m-3 btn-outline-success  `}
+                      >
+                        Approve
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                    {isSupervisor ||
+                    postData.postedBy?._id === localStorage.getItem('id') ? (
+                      <button
+                        type="button"
+                        onClick={handelDelete}
+                        class="btn m-3 btn-outline-danger"
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                    {postData.postedBy?._id === localStorage.getItem('id') ? (
+                      <button
+                        type="button"
+                        onClick={handelEdit}
+                        class="btn m-3 btn-outline-warning"
+                      >
+                        Edit
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+                <hr className="mb40" />
+                <h3 className="mb40 text-center text-uppercase font500">
+                  About Author
+                </h3>
+                <hr className="mb40" />
+
+                <div className="media mb40">
+                  <i className="d-flex mr-3 fa fa-user-circle fa-5x text-primary" />
+                  <div className="media-body">
+                    <h4 className="mt-0 font700">{postData.postedBy?.name}</h4>{' '}
+                    {postData.postedBy?.name} is a USA Today bestselling author
+                    of swashbuckling action-adventure romance. She’s the wife of
+                    a rock star, and the mother of two young adults, but she’s
+                    also been a ballerina, a typographer, a film composer, a
+                    piano player, a singer in an all-girl rock band, and a voice
+                    in those violent video games you won’t let your kids play.
+                    She does her best writing on cruise ships, in Scottish
+                    castles, on her husband’s tour bus, and at home in her sunny
+                    southern California garden. Glynnis loves to play medieval
+                    matchmaker, transporting readers to a place where the bold
+                    heroes have endearing flaws, the women are stronger than
+                    they look, the land is lush and untamed, and chivalry is
+                    alive and well
+                  </div>
+                </div>
+                <hr className="mb40" />
+              </div>
+            </article>
+          </div>
+        </div>
+      )}
     </>
   );
 };
