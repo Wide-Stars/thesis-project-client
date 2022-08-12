@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrPage from './pages/ErrPage';
+import Table from './pages/table';
 
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -21,6 +22,7 @@ function App() {
         <Route path="*" element={<ErrPage />} />
         <Route path="/*" element={<ProtectedRoute />}>
           <Route path="" element={<Home />} />
+          <Route path="table/:type" element={<Table />}></Route>
           <Route path="edit-post/:id" element={<EditPost />}></Route>
           <Route path="add-post" element={<EditPost />}></Route>
 
