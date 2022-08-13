@@ -17,7 +17,7 @@ const Post = () => {
   const getPostData = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/get/${path}`,
+      `https://thesis-app-io.herokuapp.com0/api/post/get/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const Post = () => {
   const handelApprove = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.post(
-      `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/approve/${path}`,
+      `https://thesis-app-io.herokuapp.com0/api/post/approve/${path}`,
       {},
       {
         headers: {
@@ -50,7 +50,7 @@ const Post = () => {
   const handelDelete = async () => {
     const token = localStorage.getItem('token');
     await axios.delete(
-      `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/remove/${path}`,
+      `https://thesis-app-io.herokuapp.com0/api/post/remove/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
