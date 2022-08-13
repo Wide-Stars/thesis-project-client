@@ -23,8 +23,9 @@ const EditPost = () => {
   const onEditorStateChange = (editorState) => {
     setValue('content', editorState);
   };
+  const [existingPost, setExistingPost] = useState();
 
-  const editorContent = watch('content');
+  let editorContent = watch('content');
 
   const navigate = useNavigate();
   const postId = useLocation().pathname.split('/')[2];
@@ -34,7 +35,7 @@ const EditPost = () => {
   const getPost = async () => {
     if (postId) {
       const post = await axios.get(
-        `http://localhost:3000/api/post/get/${postId}`,
+        `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/get/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,8 +43,8 @@ const EditPost = () => {
         }
       );
 
-      setContent(post.data.content);
-      setTitle(post.data.title);
+      setExistingPost(post.data);
+      onEditorStateChange(post.data.content);
     }
   };
 
@@ -52,7 +53,7 @@ const EditPost = () => {
 
     if (postId) {
       await axios.post(
-        `http://localhost:3000/api/post/modify/${postId}`,
+        `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/modify/${postId}`,
         {
           title: data.title,
           content: data.content,
@@ -70,7 +71,7 @@ const EditPost = () => {
       return;
     } else {
       const res = await axios.post(
-        'http://localhost:3000/api/post/create',
+        'http://localhost:https://thesis-app-io.herokuapp.com0/api/post/create',
         {
           title: data.title,
           content: data.content,
@@ -109,6 +110,7 @@ const EditPost = () => {
                 className="form-control "
                 name="title"
                 {...register('title')}
+                alue={existingPost ? existingPost.title : ''}
               />
             </div>
             <p className="wrn">{errors.title?.message}</p>
@@ -119,6 +121,7 @@ const EditPost = () => {
                 class="form-select"
                 id="inputGroupSelect01"
                 {...register('type')}
+                alue={existingPost ? existingPost.type : ''}
               >
                 <option selected></option>
                 <option value="project">Project</option>
@@ -134,6 +137,7 @@ const EditPost = () => {
                 className="form-control "
                 name="title"
                 {...register('supervisorName')}
+                alue={existingPost ? existingPost.supervisorName : ''}
               />
             </div>
             <p className="wrn">{errors.supervisorName?.message}</p>

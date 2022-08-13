@@ -18,7 +18,7 @@ const Table = () => {
   const getTable = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `http://localhost:3000/api/post/get/table/${
+      `http://localhost:https://thesis-app-io.herokuapp.com0/api/post/get/table/${
         pathname.split('/')[2] === 'project' ? 'project' : 'thesis'
       }`,
       {

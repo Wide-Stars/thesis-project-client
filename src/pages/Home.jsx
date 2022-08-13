@@ -33,47 +33,7 @@ const Home = () => {
       </div>
 
       <div className="row">
-        <div className="col-2">
-          {/* <nav className="navbar bg-light" p-5>
-            <ul className="nav navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link m-3" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link m-3" href="#">
-                  Services
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link m-3" href="#">
-                  Contact
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link m-3" href="#">
-                  Blogs
-                </a>
-              </li>
-              <li className="nav-item " onClick={clickHandler}>
-                <a className="nav-link m-3" href="#">
-                  dept
-                </a>
-                {clicked && (
-                  <ul className="">
-                    <button type="button" class="btn btn-outline-primary">
-                      Thesis
-                    </button>
-
-                    <button type="button" class="btn btn-outline-info">
-                      Projects
-                    </button>
-                  </ul>
-                )}
-              </li>
-            </ul>
-          </nav> */}
+        {/* <div className="col-2">
           <ul class="list-group">
             <li
               class={`list-group-item ${clicked ? 'active' : ''}`}
@@ -95,11 +55,61 @@ const Home = () => {
               )}
             </li>
           </ul>
-        </div>
+        </div> */}
+        <div className="col-2">
+          <ul class="nav flex-column nav-link bg-light">
+            <li class="nav-item mb-3">
+              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+                Accounting and information
+              </button>
+            </li>
+            <li class="nav-item mb-3">
+              <button
+                class="btn btn-outline-success my-2 my-sm-0 btn-sm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setClicked(!clicked);
+                }}
+              >
+                faculty of computer science and engineering
+              </button>
+            </li>
+            {clicked && (
+              <ul className="nav flex-column nav-link bg-light text-center">
+                <li class="nav-item mb-3">
+                  <Link
+                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                    to={'/table/project'}
+                  >
+                    Project
+                  </Link>
+                </li>
+                <li class="nav-item mb-3">
+                  <Link
+                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                    to={'/table/thesis'}
+                  >
+                    thesis
+                  </Link>
+                </li>
+              </ul>
+            )}
 
+            <li class="nav-item mb-3">
+              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+                Microbiology and cell biology
+              </button>
+            </li>
+            <li class="nav-item mb-3">
+              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+                department of finance
+              </button>
+            </li>
+          </ul>
+        </div>
         <div className="col-10">
           <>
-            <p>
+            <p className="mt-5">
               After your project or thesis is complete,&nbsp;approval signatures
               obtained,&nbsp;and passed departmental review, follow the steps
               below:

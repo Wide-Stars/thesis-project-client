@@ -23,13 +23,16 @@ const Register = () => {
     const id = toast.loading('Please wait...');
 
     try {
-      const res = await axios.post('http://localhost:3000/api/user/create', {
-        name: data.name,
-        password: data.password,
-        batch: data.batch,
-        email: data.email,
-        avatar: Math.round(Math.random() * 8),
-      });
+      const res = await axios.post(
+        'http://localhost:https://thesis-app-io.herokuapp.com0/api/user/create',
+        {
+          name: data.name,
+          password: data.password,
+          batch: data.batch,
+          email: data.email,
+          avatar: Math.round(Math.random() * 8),
+        }
+      );
       console.log(res);
       // update post and logedin value
 
