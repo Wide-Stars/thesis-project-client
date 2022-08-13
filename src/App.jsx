@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ErrPage from './pages/ErrPage';
-import Table from './pages/table';
+import Table from './pages/Table';
 
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';

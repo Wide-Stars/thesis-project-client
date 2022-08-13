@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Table = () => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
+
+  console.log(pathname);
+
   const getTable = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `http://localhost:3000/api/post/get/table/project`,
+      `http://localhost:3000/api/post/get/table/${
+        pathname.split('/')[2] === 'project' ? 'project' : 'thesis'
+      }`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -15,7 +24,7 @@ const Table = () => {
       }
     );
     setTableData(data.data);
-    console.log(data.data);
+
     setLoading(false);
   };
   useEffect(() => {
@@ -46,27 +55,19 @@ const Table = () => {
               </tr>
             </thead>
             <tbody>
-              {/* <tr>
-                <th scope="row">1</th>
-                <td>Larry</td>
-                <td>the Bird</td> <td>Larry</td>
-                <td>the Bird</td>
-                <td>
-                  <button type="button" class="btn btn-outline-success">
-                    visit
-                  </button>
-                </td>
-              </tr> */}
               {tableData.map((item, index) => (
                 <tr>
-                  <th scope="row">{index}</th>
+                  <th scope="row">{item.postedBy?._id}</th>
                   <td>{item.postedBy?.name}</td>
-                  <td>{item?.title}</td> <td>tom</td>
-                  <td>the a</td>
+                  <td>{item?.postedBy.batch}</td> <td>{item.title}</td>
+                  <td>{item.supervisorName}</td>
                   <td>
-                    <button type="button" class="btn btn-outline-success">
+                    <Link
+                      class="btn btn-outline-success"
+                      to={`/post/${item._id}`}
+                    >
                       visit
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

@@ -26,7 +26,7 @@ const Register = () => {
       const res = await axios.post('http://localhost:3000/api/user/create', {
         name: data.name,
         password: data.password,
-        isSupervisor: data.isSupervisor,
+        batch: data.batch,
         email: data.email,
         avatar: Math.round(Math.random() * 8),
       });
@@ -114,20 +114,20 @@ const Register = () => {
                 />
                 <p className="wrn">{errors.confirmPassword?.message}</p>
               </div>
-              <div className="form-check">
-                <input
-                  className="form-check-input ml-2 "
-                  type="checkbox"
-                  id="isSupervisor"
-                  {...register('isSupervisor')}
-                />
-                <label
-                  className="mb-3 text-light form-check-label text-light"
-                  htmlFor="flexCheckDefault"
-                >
-                  Supervisor Account
+              <div className="mb-3 col-md-12">
+                <label className="mb-3 text-light">
+                  Batch<span className="text-danger">*</span>
                 </label>
+                <input
+                  type="text"
+                  name="batch"
+                  className="form-control "
+                  placeholder="Enter your batch name"
+                  {...register('batch')}
+                />
+                <p className="wrn">{errors.batch?.message}</p>
               </div>
+
               <div className="col-md-12">
                 <button className="btn btn-primary float-end">
                   Signup Now
