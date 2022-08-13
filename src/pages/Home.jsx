@@ -56,8 +56,8 @@ const Home = () => {
             </li>
           </ul>
         </div> */}
-        <div className="col-2">
-          <ul class="nav flex-column nav-link bg-light">
+        <div className="col-lg-2">
+          <ul class="nav flex-column nav-link bg-light sm-flex-row  ">
             <li class="nav-item mb-3">
               <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
                 Accounting and information

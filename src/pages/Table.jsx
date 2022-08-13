@@ -46,13 +46,13 @@ const Table = () => {
         </div>
       )}
 
-      <div className="card ">
+      {/* <div className="card ">
         <div className="card-body p-5 text-center">
           <Link className="btn btn-outline-danger" to={'/add-post'}>
             {`Create a new ${pathname.split('/')[2]}`}{' '}
           </Link>
         </div>
-      </div>
+      </div> */}
 
       {loading === false && tableData.length === 0 && (
         <div className="card ">
@@ -63,7 +63,7 @@ const Table = () => {
       )}
 
       {!loading && (
-        <div>
+        <div className="container mt-3">
           <table className="table table-striped">
             <thead>
               <tr>

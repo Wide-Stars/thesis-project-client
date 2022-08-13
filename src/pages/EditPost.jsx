@@ -110,7 +110,7 @@ const EditPost = () => {
                 className="form-control "
                 name="title"
                 {...register('title')}
-                alue={existingPost ? existingPost.title : ''}
+                defaultValue={existingPost ? existingPost.title : ''}
               />
             </div>
             <p className="wrn">{errors.title?.message}</p>
@@ -121,7 +121,7 @@ const EditPost = () => {
                 class="form-select"
                 id="inputGroupSelect01"
                 {...register('type')}
-                alue={existingPost ? existingPost.type : ''}
+                defaultValue={existingPost ? existingPost.type : ''}
               >
                 <option selected></option>
                 <option value="project">Project</option>
@@ -137,7 +137,7 @@ const EditPost = () => {
                 className="form-control "
                 name="title"
                 {...register('supervisorName')}
-                alue={existingPost ? existingPost.supervisorName : ''}
+                defaultValue={existingPost ? existingPost.supervisorName : ''}
               />
             </div>
             <p className="wrn">{errors.supervisorName?.message}</p>

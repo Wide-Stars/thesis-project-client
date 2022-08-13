@@ -29,7 +29,7 @@ const Profile = () => {
         .concat('......'),
     }));
     if (newData.length === 0) {
-      const userData = await axios.get(
+      const userInfo = await axios.get(
         `https://thesis-app-io.herokuapp.com/api/user/${path}`,
         {
           headers: {
@@ -37,8 +37,8 @@ const Profile = () => {
           },
         }
       );
-      setUserInfo(userData.data);
-      console.log(userData.data);
+      setUserInfo(userInfo.data);
+      console.log(userInfo.data);
       return;
     }
 
@@ -52,7 +52,7 @@ const Profile = () => {
   }, []);
   console.log(userInfo);
   return (
-    <>
+    <div className="container">
       {loading && (
         <div class="text-center container d-flex justify-content-center align-items-center">
           <div class="spinner-border" role="status">
@@ -109,17 +109,26 @@ const Profile = () => {
 
                     <div className="row text-left ">
                       <div className="col-sm-4">
-                        <h6 className="ml-">Account type:</h6>
+                        <h6 className="ml-">Batch</h6>
                       </div>
                       <div className="col-sm-7 text-secondary">
-                        {userInfo?.isSupervisor ? '  Supervisor' : '  Student'}
+                        {userInfo?.batch}
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="row text-left ">
+                      <div className="col-sm-4">
+                        <h6 className="ml-">ID</h6>
+                      </div>
+                      <div className="col-sm-7 text-secondary">
+                        {userInfo?._id}
                       </div>
                     </div>
                     <hr />
                   </div>
                   <Link className="  mb-3 mt-0 text-center" to={'/add-post'}>
                     <button type="button" class="btn btn-info">
-                      Create a new post
+                      Create a new Project or Thesis
                     </button>
                   </Link>
                 </div>
@@ -149,13 +158,13 @@ const Profile = () => {
                                     }.png`}
                                   />
                                 </div>
-                                {data.isApproved ? (
+                                {data.type === 'project' ? (
                                   <span class=" m-3 badge text-bg-success">
-                                    Approved
+                                    Project
                                   </span>
                                 ) : (
                                   <span class="badge text-bg-warning">
-                                    Pending
+                                    Thesis
                                   </span>
                                 )}
                               </div>
@@ -172,8 +181,13 @@ const Profile = () => {
                                   )}
                                   {/* {data.dateCreated} */}
                                 </h5>
-                                <h1 className="mb-3">{data.title}</h1>
-                                <p className="description">{data.content}</p>
+                                <h1 className="mb-3 text-wrap">{data.title}</h1>
+                                <p className="description text-break">
+                                  {data.content
+                                    .split(' ')
+                                    .slice(0, 20)
+                                    .join(' ') + '.......'}
+                                </p>
                               </div>
                               <div className="col-sm-1" data-no-turbolink="">
                                 <Link
@@ -194,7 +208,7 @@ const Profile = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

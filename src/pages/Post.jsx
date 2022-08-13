@@ -86,32 +86,20 @@ const Post = () => {
               <div className="post-content">
                 <h3 className="text-center ">
                   {postData.title}
-                  {postData.isApproved ? (
-                    <span class=" m-3 badge text-bg-success">Approved</span>
+                  {postData.type === 'project' ? (
+                    <span class=" m-3 badge text-bg-success">Project</span>
                   ) : (
-                    <span class=" m-3 badge text-bg-warning">Pending</span>
+                    <span class=" m-3 badge text-bg-danger">Thesis</span>
                   )}
                 </h3>
 
                 <hr className="mb-40" />
                 <div className="card">
-                  <div className="card-body imgP">{postContent}</div>
+                  <div className="card-body ">{postContent}</div>
                 </div>
-                <div className="card">
+                <div className="card mt-3">
                   <div className="card-body text-center">
-                    {isSupervisor && !postData.isApproved ? (
-                      <button
-                        type="button"
-                        onClick={handelApprove}
-                        class={`btn m-3 btn-outline-success  `}
-                      >
-                        Approve
-                      </button>
-                    ) : (
-                      ''
-                    )}
-                    {isSupervisor ||
-                    postData.postedBy?._id === localStorage.getItem('id') ? (
+                    {postData.postedBy?._id === localStorage.getItem('id') ? (
                       <button
                         type="button"
                         onClick={handelDelete}
@@ -135,32 +123,47 @@ const Post = () => {
                     )}
                   </div>
                 </div>
-                <hr className="mb40" />
-                <h3 className="mb40 text-center text-uppercase font500">
-                  About Author
-                </h3>
-                <hr className="mb40" />
+                <h3 className="text-center mt-3">Author details</h3>
+                <div className="card mt-3">
+                  <div className="card-body">
+                    <div className="row text-left ">
+                      <div className="col-sm-4 ">
+                        <h6 className="ml-">Full Name</h6>
+                      </div>
+                      <div className="col-sm-7 text-secondary">
+                        {postData.postedBy?.name}
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="row text-left ">
+                      <div className="col-sm-4">
+                        <h6 className="ml-">Email</h6>
+                      </div>
+                      <div className="col-sm-7 text-secondary">
+                        {postData.postedBy?.email}
+                      </div>
+                    </div>
+                    <hr />
 
-                <div className="media mb40">
-                  <i className="d-flex mr-3 fa fa-user-circle fa-5x text-primary" />
-                  <div className="media-body">
-                    <h4 className="mt-0 font700">{postData.postedBy?.name}</h4>{' '}
-                    {postData.postedBy?.name} is a USA Today bestselling author
-                    of swashbuckling action-adventure romance. She’s the wife of
-                    a rock star, and the mother of two young adults, but she’s
-                    also been a ballerina, a typographer, a film composer, a
-                    piano player, a singer in an all-girl rock band, and a voice
-                    in those violent video games you won’t let your kids play.
-                    She does her best writing on cruise ships, in Scottish
-                    castles, on her husband’s tour bus, and at home in her sunny
-                    southern California garden. Glynnis loves to play medieval
-                    matchmaker, transporting readers to a place where the bold
-                    heroes have endearing flaws, the women are stronger than
-                    they look, the land is lush and untamed, and chivalry is
-                    alive and well
+                    <div className="row text-left ">
+                      <div className="col-sm-4">
+                        <h6 className="ml-">Batch</h6>
+                      </div>
+                      <div className="col-sm-7 text-secondary">
+                        {postData.postedBy?.batch}
+                      </div>
+                    </div>
+                    <hr />
+                    <div className="row text-left ">
+                      <div className="col-sm-4">
+                        <h6 className="ml-">Supervisor name</h6>
+                      </div>
+                      <div className="col-sm-7 text-secondary">
+                        {postData?.supervisorName}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <hr className="mb40" />
               </div>
             </article>
           </div>
