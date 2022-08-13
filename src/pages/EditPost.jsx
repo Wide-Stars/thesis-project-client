@@ -3,16 +3,32 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { schemaPost } from '../components/Form';
 
 import axios from 'axios';
 
 const EditPost = () => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schemaPost),
+  });
+
+  const onEditorStateChange = (editorState) => {
+    setValue('content', editorState);
+  };
+
+  const editorContent = watch('content');
+
   const navigate = useNavigate();
   const postId = useLocation().pathname.split('/')[2];
 
-  const [content, setContent] = useState('');
-  const [title, setTitle] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
   const token = localStorage.getItem('token');
 
   const getPost = async () => {
@@ -31,18 +47,17 @@ const EditPost = () => {
     }
   };
 
-  const onTitleChange = (e) => {
-    setTitle(e.target.value);
-  };
+  const onSubmit = async (data) => {
+    console.log(data);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
     if (postId) {
       await axios.post(
         `http://localhost:3000/api/post/modify/${postId}`,
         {
-          title,
-          content,
+          title: data.title,
+          content: data.content,
+          type: data.type,
+          supervisorName: data.supervisorName,
         },
         {
           headers: {
@@ -53,18 +68,15 @@ const EditPost = () => {
 
       navigate('/');
       return;
-    }
-
-    if (title.length < 10 || content.length < 200) {
-      setErrorMessage(
-        'Title must be at least 10 characters long and content must be at least 200 characters long'
-      );
-      return;
     } else {
-      setErrorMessage('');
       const res = await axios.post(
         'http://localhost:3000/api/post/create',
-        { title, content },
+        {
+          title: data.title,
+          content: data.content,
+          type: data.type,
+          supervisorName: data.supervisorName,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -89,32 +101,57 @@ const EditPost = () => {
           <h1 className="text-center mt-3 ">
             {postId ? 'Update Post' : 'Create Post'}
           </h1>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group m-2">
-              <label htmlFor="title">Title</label>
+              <label>Title</label>
               <input
                 type="text"
                 className="form-control "
                 name="title"
-                defaultValue={title}
-                onChange={onTitleChange}
+                {...register('title')}
               />
             </div>
+            <p className="wrn">{errors.title?.message}</p>
+
+            <label>Post type</label>
+            <div class="input-group mb-3">
+              <select
+                class="form-select"
+                id="inputGroupSelect01"
+                {...register('type')}
+              >
+                <option selected></option>
+                <option value="project">Project</option>
+                <option value="thesis">thesis</option>
+              </select>
+            </div>
+            <p className="wrn">{errors.type?.message}</p>
+
+            <div className="form-group m-2">
+              <label>Supervisor Name</label>
+              <input
+                type="text"
+                className="form-control "
+                name="title"
+                {...register('supervisorName')}
+              />
+            </div>
+            <p className="wrn">{errors.supervisorName?.message}</p>
 
             <label htmlFor="content">Content</label>
             <ReactQuill
               theme="snow"
               className="h-5"
-              value={content}
-              onChange={setContent}
+              value={editorContent}
+              onChange={onEditorStateChange}
               style={{ height: '14rem' }}
             />
+            <p className="wrn mt-5">{errors.content?.message}</p>
 
             <div className="form-group"></div>
             <div className="form-group text-center">
-              <p className="wrn">{errorMessage}</p>
               <button type="submit" className="btn btn-primary bg-primary mt-5">
-                {postId ? 'Update Thesis' : 'Submit Thesis'}
+                {postId ? 'Update Post' : 'Submit Post'}
               </button>
             </div>
           </form>

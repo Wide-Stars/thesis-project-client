@@ -89,7 +89,7 @@ const Home = () => {
                     <Link to="/table/thesis">Thesis</Link>
                   </li>
                   <li class="list-group-item">
-                    <Link to="/table/projects">Projects</Link>
+                    <Link to="/table/project">Projects</Link>
                   </li>
                 </ul>
               )}

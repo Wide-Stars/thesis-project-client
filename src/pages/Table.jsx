@@ -9,7 +9,11 @@ const Table = () => {
   const [loading, setLoading] = useState(true);
   const [tableData, setTableData] = useState([]);
 
-  console.log(pathname);
+  // const redirect = pathname == '/table/project' || pathname == '/table/thesis';
+
+  // if (!redirect) {
+  //   navigate('/error');
+  // }
 
   const getTable = async () => {
     const token = localStorage.getItem('token');
@@ -24,6 +28,7 @@ const Table = () => {
       }
     );
     setTableData(data.data);
+    console.log(data.data);
 
     setLoading(false);
   };
@@ -37,6 +42,22 @@ const Table = () => {
         <div class="text-center container d-flex justify-content-center align-items-center">
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
+
+      <div className="card ">
+        <div className="card-body p-5 text-center">
+          <Link className="btn btn-outline-danger" to={'/add-post'}>
+            {`Create a new ${pathname.split('/')[2]}`}{' '}
+          </Link>
+        </div>
+      </div>
+
+      {loading === false && tableData.length === 0 && (
+        <div className="card ">
+          <div className="card-body p-5 text-center">
+            <h3>You don't have any post</h3>
           </div>
         </div>
       )}
