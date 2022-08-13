@@ -64,36 +64,38 @@ const Table = () => {
 
       {!loading && (
         <div className="container mt-3">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Batch</th>
-                <th scope="col">project name</th>
-                <th scope="col">supervisor name</th>
-                <th scope="col">URL</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tableData.map((item, index) => (
+          <div className="table-responsive-md">
+            <table className="table table-striped">
+              <thead>
                 <tr>
-                  <th scope="row">{item.postedBy?._id}</th>
-                  <td>{item.postedBy?.name}</td>
-                  <td>{item?.postedBy.batch}</td> <td>{item.title}</td>
-                  <td>{item.supervisorName}</td>
-                  <td>
-                    <Link
-                      class="btn btn-outline-success"
-                      to={`/post/${item._id}`}
-                    >
-                      visit
-                    </Link>
-                  </td>
+                  <th scope="col">ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Batch</th>
+                  <th scope="col">project name</th>
+                  <th scope="col">supervisor name</th>
+                  <th scope="col">URL</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {tableData.map((item, index) => (
+                  <tr>
+                    <th scope="row">{item.postedBy?._id}</th>
+                    <td>{item.postedBy?.name}</td>
+                    <td>{item?.postedBy.batch}</td> <td>{item.title}</td>
+                    <td>{item.supervisorName}</td>
+                    <td>
+                      <Link
+                        class="btn btn-outline-success"
+                        to={`/post/${item._id}`}
+                      >
+                        visit
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </>
