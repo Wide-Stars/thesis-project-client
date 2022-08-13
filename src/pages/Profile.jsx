@@ -39,6 +39,7 @@ const Profile = () => {
       );
       setUserInfo(userInfo.data);
       console.log(userInfo.data);
+      setLoading(false);
       return;
     }
 
