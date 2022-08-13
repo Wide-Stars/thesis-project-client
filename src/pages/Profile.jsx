@@ -182,7 +182,9 @@ const Profile = () => {
                                   )}
                                   {/* {data.dateCreated} */}
                                 </h5>
-                                <h1 className="mb-3 text-wrap">{data.title}</h1>
+                                <h1 className="mb-3 text-break">
+                                  {data.title}
+                                </h1>
                                 <p className="description text-break">
                                   {data.content
                                     .split(' ')

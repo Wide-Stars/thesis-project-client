@@ -95,11 +95,11 @@ const Post = () => {
 
                 <hr className="mb-40" />
                 <div className="card">
-                  <div className="card-body ">{postContent}</div>
+                  <div className="card-body text-break ">{postContent}</div>
                 </div>
                 <div className="card mt-3">
-                  <div className="card-body text-center">
-                    {postData.postedBy?._id === localStorage.getItem('id') ? (
+                  {postData.postedBy?._id === localStorage.getItem('id') && (
+                    <div className="card-body text-center">
                       <button
                         type="button"
                         onClick={handelDelete}
@@ -107,10 +107,7 @@ const Post = () => {
                       >
                         Delete
                       </button>
-                    ) : (
-                      ''
-                    )}
-                    {postData.postedBy?._id === localStorage.getItem('id') ? (
+
                       <button
                         type="button"
                         onClick={handelEdit}
@@ -118,10 +115,8 @@ const Post = () => {
                       >
                         Edit
                       </button>
-                    ) : (
-                      ''
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-center mt-3">Author details</h3>
                 <div className="card mt-3">
