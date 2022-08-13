@@ -12,7 +12,7 @@ const Post = () => {
   const getPostData = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      'https://thesis-app-io.herokuapp.com0/api/post/get/all',
+      'https://thesis-app-io.herokuapp.com/api/post/get/all',
       {
         headers: {
           Authorization: `Bearer ${token}`,
