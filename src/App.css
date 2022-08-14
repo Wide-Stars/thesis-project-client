@@ -5,6 +5,7 @@ body {
 .bg-sidebar {
   background-color: #e6fcf5;
   padding-left: 25px;
+  height: 100vh;
 }
 
 .sb-btn {

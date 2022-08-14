@@ -67,9 +67,9 @@ const Post = () => {
     <>
       {' '}
       {loading && (
-        <div class="text-center container d-flex justify-content-center align-items-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="text-center container d-flex justify-content-center align-items-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -87,9 +87,9 @@ const Post = () => {
                 <h3 className="text-center ">
                   {postData.title}
                   {postData.type === 'project' ? (
-                    <span class=" m-3 badge text-bg-success">Project</span>
+                    <span className=" m-3 badge text-bg-success">Project</span>
                   ) : (
-                    <span class=" m-3 badge text-bg-danger">Thesis</span>
+                    <span className=" m-3 badge text-bg-danger">Thesis</span>
                   )}
                 </h3>
 
@@ -103,7 +103,7 @@ const Post = () => {
                       <button
                         type="button"
                         onClick={handelDelete}
-                        class="btn m-3 btn-outline-danger"
+                        className="btn m-3 btn-outline-danger"
                       >
                         Delete
                       </button>
@@ -111,7 +111,7 @@ const Post = () => {
                       <button
                         type="button"
                         onClick={handelEdit}
-                        class="btn m-3 btn-outline-warning"
+                        className="btn m-3 btn-outline-warning"
                       >
                         Edit
                       </button>
