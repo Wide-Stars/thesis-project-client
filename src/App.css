@@ -1,3 +1,28 @@
 body {
   background-color: #fff;
 }
+
+.bg-sidebar {
+  background-color: #e6fcf5;
+  padding-left: 25px;
+}
+
+.sb-btn {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  background-color: rgb(197, 225, 225);
+  padding: 10px 0;
+  width: 100%;
+  border: none;
+}
+
+.sb-btn:hover {
+  background-color: rgb(173, 205, 205);
+}
+
+li {
+  list-style-type: none;
+}

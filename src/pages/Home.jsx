@@ -29,7 +29,7 @@ const Home = () => {
         <div className="h1-container">
           <h1>Thesis and project information</h1>
         </div>
-        <img src={coverImg} alt="" />
+        {/* <img src={coverImg} alt="" /> */}
       </div>
 
       <div className="row">
@@ -56,52 +56,59 @@ const Home = () => {
             </li>
           </ul>
         </div> */}
-        <div className="col-lg-2">
-          <ul class="nav flex-column nav-link bg-light sm-flex-row  ">
+        <div className="col-lg-2 bg-sidebar">
+          <ul class="py-3 flex-column nav-link sm-flex-row">
             <li class="nav-item mb-3">
-              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+              <button class="sb-btn">
                 Accounting and information
               </button>
             </li>
+
             <li class="nav-item mb-3">
               <button
-                class="btn btn-outline-success my-2 my-sm-0 btn-sm"
+                class="sb-btn"
                 onClick={(e) => {
                   e.preventDefault();
                   setClicked(!clicked);
                 }}
               >
-                faculty of computer science and engineering
+                Faculty of CSE
               </button>
             </li>
+            
+            
             {clicked && (
               <ul className="nav flex-column nav-link bg-light text-center">
                 <li class="nav-item mb-3">
                   <Link
-                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                    class="mb-3"
                     to={'/table/project'}
                   >
-                    Project
+                    <button className='sb-btn'>
+                      Projects
+                    </button>
                   </Link>
                 </li>
                 <li class="nav-item mb-3">
                   <Link
-                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                    class="sb-btn mb-3"
                     to={'/table/thesis'}
                   >
-                    thesis
+                    <button className='sb-btn'>
+                      Thesis
+                    </button>
                   </Link>
                 </li>
               </ul>
             )}
 
             <li class="nav-item mb-3">
-              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+              <button class="sb-btn">
                 Microbiology and cell biology
               </button>
             </li>
             <li class="nav-item mb-3">
-              <button class="btn btn-outline-success my-2 my-sm-0 btn-sm">
+              <button class="sb-btn">
                 department of finance
               </button>
             </li>
