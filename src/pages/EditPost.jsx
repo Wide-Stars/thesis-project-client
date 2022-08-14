@@ -114,9 +114,9 @@ const EditPost = () => {
             <p className="wrn">{errors.title?.message}</p>
 
             <label>Post type</label>
-            <div class="input-group mb-3">
+            <div className="input-group mb-3">
               <select
-                class="form-select"
+                className="form-select"
                 id="inputGroupSelect01"
                 {...register('type')}
                 defaultValue={existingPost ? existingPost.type : ''}

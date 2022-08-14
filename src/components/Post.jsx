@@ -40,9 +40,9 @@ const Post = () => {
   return (
     <>
       {loading && (
-        <div class="text-center container d-flex justify-content-center align-items-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="text-center container d-flex justify-content-center align-items-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -68,19 +68,18 @@ const Post = () => {
                             <div className="picture">
                               <img
                                 alt="Opt wizard thumbnail"
-                                src={`https://bootdey.com/img/Content/avatar/avatar${
-                                  data.postedBy?.avatar
+                                src={`https://bootdey.com/img/Content/avatar/avatar${data.postedBy?.avatar
                                     ? data.postedBy?.avatar
                                     : '7'
-                                }.png`}
+                                  }.png`}
                               />
                             </div>
                             {data.isApproved ? (
-                              <span class=" m-3 badge text-bg-success">
+                              <span className=" m-3 badge text-bg-success">
                                 Approved
                               </span>
                             ) : (
-                              <span class="badge text-bg-warning">Pending</span>
+                              <span className="badge text-bg-warning">Pending</span>
                             )}
                           </div>
 

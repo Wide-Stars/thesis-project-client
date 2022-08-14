@@ -53,9 +53,9 @@ const Profile = () => {
   return (
     <div className="container">
       {loading && (
-        <div class="text-center container d-flex justify-content-center align-items-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
+        <div className="text-center container d-flex justify-content-center align-items-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </div>
       )}
@@ -68,9 +68,8 @@ const Profile = () => {
                   <div className="card-body">
                     <div className="d-flex flex-column align-items-center text-center">
                       <img
-                        src={`https://bootdey.com/img/Content/avatar/avatar${
-                          userInfo?.avatar ? userInfo?.avatar : '7'
-                        }.png`}
+                        src={`https://bootdey.com/img/Content/avatar/avatar${userInfo?.avatar ? userInfo?.avatar : '7'
+                          }.png`}
                         alt="Admin"
                         className="rounded-circle h-25"
                         width={150}
@@ -127,7 +126,7 @@ const Profile = () => {
                     <hr />
                   </div>
                   <Link className="  mb-3 mt-0 text-center" to={'/add-post'}>
-                    <button type="button" class="btn btn-info">
+                    <button type="button" className="btn btn-info">
                       Create a new Project or Thesis
                     </button>
                   </Link>
@@ -153,17 +152,16 @@ const Profile = () => {
                                 <div className="picture">
                                   <img
                                     alt="Opt wizard thumbnail"
-                                    src={`https://bootdey.com/img/Content/avatar/avatar${
-                                      userInfo?.avatar ? userInfo?.avatar : '7'
-                                    }.png`}
+                                    src={`https://bootdey.com/img/Content/avatar/avatar${userInfo?.avatar ? userInfo?.avatar : '7'
+                                      }.png`}
                                   />
                                 </div>
                                 {data.type === 'project' ? (
-                                  <span class=" m-3 badge text-bg-success">
+                                  <span className=" m-3 badge text-bg-success">
                                     Project
                                   </span>
                                 ) : (
-                                  <span class="badge text-bg-warning">
+                                  <span className="badge text-bg-warning">
                                     Thesis
                                   </span>
                                 )}
