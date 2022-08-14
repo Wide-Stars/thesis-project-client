@@ -33,6 +33,7 @@ const Home = () => {
 
           <Sidebar />
 
+         
         </div>
         
         <div className="col-10">
@@ -66,6 +67,7 @@ const Home = () => {
             listed below should be submitted at the same time as the project
             or thesis.&nbsp;
           </p>
+         
         </div>
       </div>
     </>

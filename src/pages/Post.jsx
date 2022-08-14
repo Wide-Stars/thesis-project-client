@@ -7,7 +7,6 @@ import '../styles/singlePost.css';
 
 const Post = () => {
   const isSupervisor = +localStorage.getItem('isSupervisor');
-  console.log(typeof isSupervisor);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const path = useLocation().pathname.split('/')[2];
