@@ -33,7 +33,6 @@ const Register = () => {
           avatar: Math.round(Math.random() * 8),
         }
       );
-      console.log(res);
       // update post and logedin value
 
       localStorage.setItem('logedin', '0');

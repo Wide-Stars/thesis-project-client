@@ -49,8 +49,6 @@ const EditPost = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     if (postId) {
       await axios.post(
         `https://thesis-app-io.herokuapp.com/api/post/modify/${postId}`,

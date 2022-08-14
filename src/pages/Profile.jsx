@@ -38,7 +38,6 @@ const Profile = () => {
         }
       );
       setUserInfo(userInfo.data);
-      console.log(userInfo.data);
       setLoading(false);
       return;
     }
@@ -51,7 +50,6 @@ const Profile = () => {
   useEffect(() => {
     getPostData();
   }, []);
-  console.log(userInfo);
   return (
     <div className="container">
       {loading && (
@@ -78,7 +76,8 @@ const Profile = () => {
                         width={150}
                       />
                       <div className="mt-3">
-                        <h4>{userInfo?.name}</h4> <span></span>
+                        <h4 className="text-break">{userInfo?.name}</h4>{' '}
+                        <span></span>
                         <p className="text-muted font-size-sm">
                           {userInfo?.email}
                         </p>

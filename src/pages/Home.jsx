@@ -59,9 +59,7 @@ const Home = () => {
         <div className="col-lg-2 bg-sidebar">
           <ul class="py-3 flex-column nav-link sm-flex-row">
             <li class="nav-item mb-3">
-              <button class="sb-btn">
-                Accounting and information
-              </button>
+              <button class="sb-btn">Accounting and information</button>
             </li>
 
             <li class="nav-item mb-3">
@@ -75,47 +73,32 @@ const Home = () => {
                 Faculty of CSE
               </button>
             </li>
-            
-            
+
             {clicked && (
               <ul className="nav flex-column nav-link bg-light text-center">
                 <li class="nav-item mb-3">
-                  <Link
-                    class="mb-3"
-                    to={'/table/project'}
-                  >
-                    <button className='sb-btn'>
-                      Projects
-                    </button>
+                  <Link class="mb-3" to={'/table/project'}>
+                    <button className="sb-btn">Projects</button>
                   </Link>
                 </li>
                 <li class="nav-item mb-3">
-                  <Link
-                    class="sb-btn mb-3"
-                    to={'/table/thesis'}
-                  >
-                    <button className='sb-btn'>
-                      Thesis
-                    </button>
+                  <Link class="sb-btn mb-3" to={'/table/thesis'}>
+                    <button className="sb-btn">Thesis</button>
                   </Link>
                 </li>
               </ul>
             )}
 
             <li class="nav-item mb-3">
-              <button class="sb-btn">
-                Microbiology and cell biology
-              </button>
+              <button class="sb-btn">Microbiology and cell biology</button>
             </li>
             <li class="nav-item mb-3">
-              <button class="sb-btn">
-                department of finance
-              </button>
+              <button class="sb-btn">department of finance</button>
             </li>
           </ul>
         </div>
         <div className="col-10">
-          <>
+          <div className="container   ">
             <p className="mt-5">
               After your project or thesis is complete,&nbsp;approval signatures
               obtained,&nbsp;and passed departmental review, follow the steps
@@ -283,7 +266,7 @@ const Home = () => {
               </a>{' '}
               if you have questions.
             </p>
-          </>
+          </div>
         </div>
       </div>
     </>
