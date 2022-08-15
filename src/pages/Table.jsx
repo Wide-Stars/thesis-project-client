@@ -19,7 +19,8 @@ const Table = () => {
   const getTable = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `https://thesis-app-io.herokuapp.com/api/post/get/table/${pathname.split('/')[2] === 'project' ? 'project' : 'thesis'
+      `https://thesis-app-io.herokuapp.com/api/post/get/table/${
+        pathname.split('/')[2] === 'project' ? 'project' : 'thesis'
       }`,
       {
         headers: {
@@ -28,12 +29,12 @@ const Table = () => {
       }
     );
     setTableData(data.data);
-
+    console.log(data.data);
     setLoading(false);
   };
   useEffect(() => {
     getTable();
-  }, []);
+  }, [pathname]);
 
   return (
     <div>
