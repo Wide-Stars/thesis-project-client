@@ -73,7 +73,8 @@ const Table = () => {
                 <div className="table-responsive-md">
                   <table className="table table-striped">
                     <thead>
-                      <tr>
+                      <tr className="text-center">
+                        <th scope="col">#</th>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Batch</th>
@@ -84,7 +85,8 @@ const Table = () => {
                     </thead>
                     <tbody>
                       {tableData.map((item, index) => (
-                        <tr>
+                        <tr className="text-center">
+                          <th scope="row">{index + 1}</th>
                           <th scope="row">{item.postedBy?._id}</th>
                           <td>{item.postedBy?.name}</td>
                           <td>{item?.postedBy.batch}</td> <td>{item.title}</td>
