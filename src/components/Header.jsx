@@ -23,7 +23,7 @@ const Header = () => {
 
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark primary-bg">
+        <nav className="navbar navbar-expand-lg navbar-dark primary-bg py-3">
             <div className="container">
                 <Link className="navbar-brand" to={'/'}>
                     Thesis Project
@@ -88,13 +88,13 @@ const Header = () => {
                             </ul>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
+                    <form className="d-flex mr-5" role="search">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                         
                     </form>
                     {pathname == '/login' || pathname == '/register' ? null : (
-                            <button className="btn btn-secondary" onClick={logoutBtn}>
+                            <button className="btn btn-secondary ms-2" onClick={logoutBtn}>
                                 Log out
                             </button>
                         )}
