@@ -11,11 +11,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 import EditPost from './pages/EditPost';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
+import Header from './components/Header';
 
 function App() {
   return (
     <Router>
-      <NavBar />
+      <Header />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

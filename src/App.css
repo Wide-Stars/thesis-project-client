@@ -27,3 +27,44 @@ body {
 li {
   list-style-type: none;
 }
+
+/*banner aria */
+
+.banner {
+  background-image: url('./assets/images/3016.jpg');
+  background-size: 100% 100%;
+  max-height: 70vh;
+  background-attachment: fixed;
+  overflow: hidden;
+  height: 70vh;
+}
+
+
+/* team */
+.team {
+  background-image: url('./assets//images/team.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.team h2 {
+  font-size: 56px;
+  font-weight: 700;
+}
+
+.box {
+  border: solid .6px gray;
+  border-radius: 6px;
+  padding: 15px 20px 15px 20px;
+  text-align: center;
+  background-color: #fff;
+}
+.box img {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+  margin-bottom: 15px;
+}
