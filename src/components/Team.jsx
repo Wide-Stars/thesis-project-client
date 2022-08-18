@@ -3,7 +3,7 @@ import React from 'react';
 const Team = () => {
     return (
         <div className="team">
-            <h2 className='text-center mb-5'>Our Team</h2>
+            <h2 className='text-center mb-5 main-title'>Our Team</h2>
             <div className="container">
                 <div className="row justify-content-center">
 

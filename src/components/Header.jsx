@@ -52,9 +52,8 @@ const Header = () => {
             {pathname === '/register' && (
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${
-                    pathname === '/login' ? 'active' : ''
-                  }  `}
+                  className={`nav-link ${pathname === '/login' ? 'active' : ''
+                    }  `}
                   aria-current="page"
                   to={'/login'}
                 >
@@ -65,9 +64,8 @@ const Header = () => {
             {pathname === '/login' && (
               <li className="nav-item">
                 <Link
-                  className={`nav-link ${
-                    pathname === '/register' ? 'active' : ''
-                  }  `}
+                  className={`nav-link ${pathname === '/register' ? 'active' : ''
+                    }  `}
                   aria-current="page"
                   to={'/register'}
                 >
@@ -77,48 +75,14 @@ const Header = () => {
             )}
             <li className="nav-item">
               <Link
-                className={`nav-link ${
-                  pathname.slice(0, 8) === '/profile' ? 'active' : ''
-                }  `}
+                className={`nav-link ${pathname.slice(0, 8) === '/profile' ? 'active' : ''
+                  }  `}
                 aria-current="page"
                 to={'/profile/' + userId}
               >
                 Profile
               </Link>
             </li>
-            {/* <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                About
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Faculty of CSE
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Blogs
-                  </a>
-                </li>
-              </ul>
-            </li> */}
             <div className="dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -131,21 +95,6 @@ const Header = () => {
                 About
               </a>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Blogs
-                  </a>
-                </li>
                 <li>
                   <a className="dropdown-item dropdown-toggle" href="#">
                     Faculty of CSE
@@ -162,6 +111,21 @@ const Header = () => {
                       </Link>
                     </li>
                   </ul>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Services
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a className="dropdown-item" href="#">
+                    Blogs
+                  </a>
                 </li>
               </ul>
             </div>
