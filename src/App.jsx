@@ -6,7 +6,6 @@ import Register from './pages/Register';
 import ErrPage from './pages/ErrPage';
 import Table from './pages/Table';
 
-import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import EditPost from './pages/EditPost';
 import Post from './pages/Post';

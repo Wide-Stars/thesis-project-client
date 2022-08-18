@@ -69,11 +69,7 @@ button:focus-visible {
   }
 } */
 
-
 /*Global color */
-
-
-
 
 .primary-bg {
   background-color: #0b1222;
@@ -85,13 +81,28 @@ button:focus-visible {
   background-color: #1e293b;
 }
 
-
-
 .primary-highlighter {
   color: #38bdf8;
 }
 
+.dropdown-menu li {
+  position: relative;
+}
 
+.dropdown-menu .dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -7px;
+}
+
+.dropdown-menu .dropdown-submenu-left {
+  right: 100%;
+  left: auto;
+}
+
+.dropdown-menu > li:hover > .dropdown-submenu {
+  display: block;
+}
 
 /*Global input style */
-
