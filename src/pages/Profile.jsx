@@ -61,9 +61,9 @@ const Profile = () => {
       )}
       {!loading && (
         <div className="container mt-4">
-          <div className="main-body">
-            <div className="row gutters-sm">
-              <div className="col-md-4 mb-3">
+          <div className="">
+            <div className="row ">
+              <div className="col-md-3">
                 <div className="card mt-3">
                   <div className="card-body">
                     <div className="d-flex flex-column align-items-center text-center">
@@ -133,7 +133,7 @@ const Profile = () => {
                   </Link>
                 </div>
               </div>
-              <div className="col-md-8">
+              <div className="col-md-9">
                 {postData.length === 0 && (
                   <div className="card">
                     <div className="card-body p-5 text-center">
@@ -141,70 +141,45 @@ const Profile = () => {
                     </div>
                   </div>
                 )}
-                {postData.length > 0 &&
-                  postData.map((data) => (
-                    <div className="card mt-3" key={data._id}>
-                      <div className="card-body">
-                        <div className="row" key={data._id}>
-                          <div className="post-list ">
-                            <div className="row">
-                              <div className="col-sm-3 text-center">
-                                {/* img */}
-                                <div className="picture">
-                                  <img
-                                    alt="Opt wizard thumbnail"
-                                    src={`https://bootdey.com/img/Content/avatar/avatar${
-                                      userInfo?.avatar ? userInfo?.avatar : '7'
-                                    }.png`}
-                                  />
-                                </div>
-                                {data.type === 'project' ? (
-                                  <span className=" m-3 badge text-bg-success">
-                                    Project
-                                  </span>
-                                ) : (
-                                  <span className="badge text-bg-warning">
-                                    Thesis
-                                  </span>
-                                )}
-                              </div>
-                              <div className="col-sm-6">
-                                <h4>
-                                  <a hre="#" className="nav-link text-info">
-                                    {data.postedBy.name}
-                                  </a>
-                                </h4>
-                                <h5>
-                                  <i className="fa fa-calendar"></i>
-                                  {moment(data.dateCreated).format(
-                                    'D MMM YYYY'
-                                  )}
-                                  {/* {data.dateCreated} */}
-                                </h5>
-                                <h1 className="mb-3 text-break">
-                                  {data.title}
-                                </h1>
-                                <p className="description text-break">
-                                  {data.content
-                                    .split(' ')
-                                    .slice(0, 20)
-                                    .join(' ') + '.......'}
-                                </p>
-                              </div>
-                              <div className="col-sm-1" data-no-turbolink="">
+                {postData.length > 0 && (
+                  <div className=" mt-3">
+                    <div className="table-responsive-md">
+                      <table className="table table-striped">
+                        <thead>
+                          <tr className="text-center">
+                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Batch</th>
+                            <th scope="col">project name</th>
+                            <th scope="col">supervisor name</th>
+                            <th scope="col">URL</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {postData.map((item, index) => (
+                            <tr className="text-center">
+                              <th scope="row">{index + 1}</th>
+                              <th scope="row">{item.postedBy?._id}</th>
+                              <td>{item.postedBy?.name}</td>
+                              <td>{item?.postedBy.batch}</td>{' '}
+                              <td>{item.title}</td>
+                              <td>{item.supervisorName}</td>
+                              <td>
                                 <Link
-                                  className="btn btn-info btn-download btn-round pull-right makeLoading"
-                                  to={`/post/${data._id}`}
+                                  className="btn btn-outline-success"
+                                  to={`/post/${item._id}`}
                                 >
-                                  <i className="fa fa-share"></i> View
+                                  visit
                                 </Link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
-                  ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>
