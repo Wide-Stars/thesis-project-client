@@ -74,12 +74,17 @@ const Post = () => {
       )}
       {!loading && (
         <div className="container pb50 mb-5">
-          <div className="mt-3 text-center">
+          <div className="mt-3 text-center ">
             <article>
               <img
                 src="https://images.unsplash.com/photo-1508873699372-7aeab60b44ab?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                 alt=""
                 className="coverImg mb-5 "
+                style={{
+                  width: '100%',
+                  height: '500px',
+                  borderRadius: '18px',
+                }}
               />
               <hr />
               <div className="post-content">
