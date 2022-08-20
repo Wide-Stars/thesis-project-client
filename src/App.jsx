@@ -11,6 +11,7 @@ import EditPost from './pages/EditPost';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="profile/:id" element={<Profile />}></Route>
         </Route>
       </Routes>
+      <Footer />
     </Router>
   );
 }

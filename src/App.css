@@ -1,5 +1,6 @@
 body {
   background-color: #fff;
+  
 }
 
 .bg-sidebar {
@@ -99,4 +100,8 @@ li {
   width: 100%;
   height: 500px;
   border-radius: 18px;;
+}
+
+.lnk {
+  text-decoration: none;
 }
