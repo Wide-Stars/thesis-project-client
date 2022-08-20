@@ -73,7 +73,7 @@ const Post = () => {
         </div>
       )}
       {!loading && (
-        <div className="container pb50 ">
+        <div className="container pb50 mb-5">
           <div className="mt-3">
             <article>
               <img

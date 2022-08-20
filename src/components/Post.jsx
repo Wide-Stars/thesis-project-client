@@ -98,12 +98,6 @@ const Post = () => {
                             <p className="description">{data.content}</p>
                           </div>
                           <div className="col-sm-4" data-no-turbolink="">
-                            {/* <a
-          className="btn btn-info btn-download btn-round pull-right makeLoading"
-          href="#"
-        >
-          <i className="fa fa-share"></i> View
-        </a> */}
 
                             <Link
                               className="btn btn-info btn-download btn-round pull-right makeLoading"

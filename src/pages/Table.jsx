@@ -22,7 +22,6 @@ const Table = () => {
       }
     );
     setTableData(data.data);
-    console.log(data.data);
     setLoading(false);
   };
   useEffect(() => {
