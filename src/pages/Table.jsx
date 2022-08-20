@@ -30,7 +30,7 @@ const Table = () => {
   }, [pathname]);
 
   return (
-    <>
+    <div className=" table">
       <div className="container">
         <div className="row">
           {loading && (
@@ -89,7 +89,7 @@ const Table = () => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
