@@ -13,7 +13,7 @@ const Profile = () => {
   const getPostData = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `https://thesis-app-io.herokuapp.com/api/post/get/user-post/${path}`,
+      `http://localhost:5000/api/post/get/user-post/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ const Profile = () => {
     }));
     if (newData.length === 0) {
       const userInfo = await axios.get(
-        `https://thesis-app-io.herokuapp.com/api/user/${path}`,
+        `http://localhost:5000/api/user/${path}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

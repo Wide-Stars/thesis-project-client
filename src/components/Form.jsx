@@ -20,4 +20,5 @@ export const schemaPost = yup.object().shape({
   type: yup.string().required('Type is required'),
   supervisorName: yup.string().required('Supervisor Name is required'),
   content: yup.string().min(100).required('Content is required'),
+  pdfUrl: yup.string(),
 });

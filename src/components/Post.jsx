@@ -11,14 +11,11 @@ const Post = () => {
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
-    const data = await axios.get(
-      'https://thesis-app-io.herokuapp.com/api/post/get/all',
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    const data = await axios.get('http://localhost:5000/api/post/get/all', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     const newData = data.data.map((item) => ({
       ...item,
@@ -68,10 +65,11 @@ const Post = () => {
                             <div className="picture">
                               <img
                                 alt="Opt wizard thumbnail"
-                                src={`https://bootdey.com/img/Content/avatar/avatar${data.postedBy?.avatar
+                                src={`https://bootdey.com/img/Content/avatar/avatar${
+                                  data.postedBy?.avatar
                                     ? data.postedBy?.avatar
                                     : '7'
-                                  }.png`}
+                                }.png`}
                               />
                             </div>
                             {data.isApproved ? (
@@ -79,7 +77,9 @@ const Post = () => {
                                 Approved
                               </span>
                             ) : (
-                              <span className="badge text-bg-warning">Pending</span>
+                              <span className="badge text-bg-warning">
+                                Pending
+                              </span>
                             )}
                           </div>
 
@@ -98,7 +98,6 @@ const Post = () => {
                             <p className="description">{data.content}</p>
                           </div>
                           <div className="col-sm-4" data-no-turbolink="">
-
                             <Link
                               className="btn btn-info btn-download btn-round pull-right makeLoading"
                               to={`/post/${data._id}`}
