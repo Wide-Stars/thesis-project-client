@@ -35,7 +35,7 @@ const EditPost = () => {
   const getPost = async () => {
     if (postId) {
       const post = await axios.get(
-        `https://thesis-app-io.herokuapp.com/api/post/get/${postId}`,
+        `https://node-server-1.onrender.com/api/post/get/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -51,12 +51,13 @@ const EditPost = () => {
   const onSubmit = async (data) => {
     if (postId) {
       await axios.post(
-        `https://thesis-app-io.herokuapp.com/api/post/modify/${postId}`,
+        `https://node-server-1.onrender.com/api/post/modify/${postId}`,
         {
           title: data.title,
           content: data.content,
           type: data.type,
           supervisorName: data.supervisorName,
+          pdfUrl: data.pdfUrl,
         },
         {
           headers: {
@@ -69,12 +70,13 @@ const EditPost = () => {
       return;
     } else {
       const res = await axios.post(
-        'https://thesis-app-io.herokuapp.com/api/post/create',
+        'https://node-server-1.onrender.com/api/post/create',
         {
           title: data.title,
           content: data.content,
           type: data.type,
           supervisorName: data.supervisorName,
+          pdfUrl: data.pdfUrl,
         },
         {
           headers: {
@@ -136,6 +138,16 @@ const EditPost = () => {
                 name="title"
                 {...register('supervisorName')}
                 defaultValue={existingPost ? existingPost.supervisorName : ''}
+              />
+            </div>
+            <div className="form-group m-2">
+              <label>PDF url</label>
+              <input
+                type="text"
+                className="form-control "
+                name="title"
+                {...register('pdfUrl')}
+                defaultValue={existingPost ? existingPost.pdfUrl : ''}
               />
             </div>
             <p className="wrn">{errors.supervisorName?.message}</p>

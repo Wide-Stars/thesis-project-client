@@ -24,7 +24,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(
-        'https://thesis-app-io.herokuapp.com/api/user/create',
+        'https://node-server-1.onrender.com/api/user/create',
         {
           name: data.name,
           password: data.password,

@@ -25,7 +25,7 @@ const Login = () => {
     const id = toast.loading('Please wait...');
     try {
       const res = await axios.post(
-        'https://thesis-app-io.herokuapp.com/api/user/login',
+        'https://node-server-1.onrender.com/api/user/login',
         {
           email: data.email,
           password: data.password,
