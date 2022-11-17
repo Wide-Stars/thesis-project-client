@@ -23,13 +23,16 @@ const Register = () => {
     const id = toast.loading('Please wait...');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/user/create', {
-        name: data.name,
-        password: data.password,
-        batch: data.batch,
-        email: data.email,
-        avatar: Math.round(Math.random() * 8),
-      });
+      const res = await axios.post(
+        'https://node-server-1.onrender.com/api/user/create',
+        {
+          name: data.name,
+          password: data.password,
+          batch: data.batch,
+          email: data.email,
+          avatar: Math.round(Math.random() * 8),
+        }
+      );
       // update post and logedin value
 
       localStorage.setItem('logedin', '0');

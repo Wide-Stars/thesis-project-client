@@ -13,7 +13,7 @@ const Profile = () => {
   const getPostData = async () => {
     const token = localStorage.getItem('token');
     const data = await axios.get(
-      `http://localhost:5000/api/post/get/user-post/${path}`,
+      `https://node-server-1.onrender.com/api/post/get/user-post/${path}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ const Profile = () => {
     }));
     if (newData.length === 0) {
       const userInfo = await axios.get(
-        `http://localhost:5000/api/user/${path}`,
+        `https://node-server-1.onrender.com/api/user/${path}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

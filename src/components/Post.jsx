@@ -11,11 +11,14 @@ const Post = () => {
 
   const getPostData = async () => {
     const token = localStorage.getItem('token');
-    const data = await axios.get('http://localhost:5000/api/post/get/all', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const data = await axios.get(
+      'https://node-server-1.onrender.com/api/post/get/all',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const newData = data.data.map((item) => ({
       ...item,
