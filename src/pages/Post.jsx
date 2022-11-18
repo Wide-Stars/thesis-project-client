@@ -61,6 +61,7 @@ const Post = () => {
     navigate('/');
   };
 
+  console.log(pdfUrl);
   useEffect(() => {
     getPostData();
   }, []);
@@ -196,7 +197,7 @@ const Post = () => {
         <object
           width="100%"
           height={1000}
-          data="https://www.docdroid.net/file/download/36AuXIL/sample49a87e34-pdf.pdf"
+          data={pdfUrl}
           type="application/pdf"
         ></object>
       )}
